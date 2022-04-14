@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Wordle',
       theme: ThemeData(
         fontFamily: 'BarlowCondensed',
@@ -433,6 +434,7 @@ class _MyHomePageState extends State<MyHomePage> {
         body: Container(
           decoration: BoxDecoration(color: Color.fromRGBO(18, 18, 19, 1)),
           child: Column(children: [
+            SizedBox(height: 30),
             Container(
                 child: Expanded(
                     child: ListView(

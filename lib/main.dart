@@ -38,7 +38,9 @@ class MyHomePage extends StatefulWidget {
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
-
+BoxDecoration grayDec = BoxDecoration(
+    color: Color.fromRGBO(58, 58, 60, 1),
+    border: Border.all(color: Color.fromRGBO(58, 58, 60, 1)));
 BoxDecoration blackDec = BoxDecoration(
     color: Color.fromRGBO(18, 18, 19, 1),
     border: Border.all(color: Color.fromRGBO(58, 58, 60, 1)));
@@ -317,7 +319,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
         indexed = k;
       } else {
-        list[i] = (blackDec);
+        list[i] = (grayDec);
       }
     }
     for (int i = 0; i < indexed.length; i++) {
@@ -336,7 +338,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
           tdW = c;
         } else {
-          list[i] = blackDec;
+          list[i] = grayDec;
         }
       }
     }

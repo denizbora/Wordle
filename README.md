@@ -1,4 +1,5 @@
-![Wordle](https://user-images.githubusercontent.com/45859791/163414878-4b32a680-b4a7-4146-82e8-3c7e33c7de95.png)
+![Wordle](https://user-images.githubusercontent.com/45859791/163589065-569ed5b2-4838-4dc1-82ba-a059e19955dc.png)
+
 
 
 # Wordle

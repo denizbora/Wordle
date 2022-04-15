@@ -39,22 +39,19 @@ class MyHomePage extends StatefulWidget {
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
+
 BoxDecoration grayLet = BoxDecoration(
-    color: Color.fromRGBO(129, 131, 132,1),
-    borderRadius: BorderRadius.all(Radius.circular(5))
-);
+    color: Color.fromRGBO(129, 131, 132, 1),
+    borderRadius: BorderRadius.all(Radius.circular(5)));
 BoxDecoration blackLet = BoxDecoration(
-    color: Color.fromRGBO(58, 58, 60,1),
-    borderRadius: BorderRadius.all(Radius.circular(5))
-);
+    color: Color.fromRGBO(58, 58, 60, 1),
+    borderRadius: BorderRadius.all(Radius.circular(5)));
 BoxDecoration greenLet = BoxDecoration(
-    color: Color.fromRGBO(83, 141, 78,1),
-    borderRadius: BorderRadius.all(Radius.circular(5))
-);
+    color: Color.fromRGBO(83, 141, 78, 1),
+    borderRadius: BorderRadius.all(Radius.circular(5)));
 BoxDecoration yellowLet = BoxDecoration(
-    color: Color.fromRGBO(181, 159, 59,1),
-    borderRadius: BorderRadius.all(Radius.circular(5))
-);
+    color: Color.fromRGBO(181, 159, 59, 1),
+    borderRadius: BorderRadius.all(Radius.circular(5)));
 BoxDecoration grayDec = BoxDecoration(
     color: Color.fromRGBO(58, 58, 60, 1),
     border: Border.all(color: Color.fromRGBO(58, 58, 60, 1)));
@@ -79,8 +76,68 @@ class _MyHomePageState extends State<MyHomePage> {
   List<BoxDecoration> fourths = List<BoxDecoration>.filled(5, blackDec);
   List<BoxDecoration> fifths = List<BoxDecoration>.filled(5, blackDec);
   List<BoxDecoration> sixths = List<BoxDecoration>.filled(5, blackDec);
-  Map letters = {"E":grayLet,"R":grayLet,"T":grayLet,"Y":grayLet,"U":grayLet,"I":grayLet,"O":grayLet,"P":grayLet,"Ğ":grayLet,"Ü":grayLet,"A":grayLet,"S":grayLet,"D":grayLet,"F":grayLet,"G":grayLet,"H":grayLet,"J":grayLet,"K":grayLet,"L":grayLet,"Ş":grayLet,"İ":grayLet,"Z":grayLet,"C":grayLet,"V":grayLet,"B":grayLet,"N":grayLet,"M":grayLet,"Ö":grayLet,"Ç":grayLet};
-  Map letterss = {"E":"greyLet","R":"greyLet","T":"greyLet","Y":"greyLet","U":"greyLet","I":"greyLet","O":"greyLet","P":"greyLet","Ğ":"greyLet","Ü":"greyLet","A":"greyLet","S":"greyLet","D":"greyLet","F":"greyLet","G":"greyLet","H":"greyLet","J":"greyLet","K":"greyLet","L":"greyLet","Ş":"greyLet","İ":"greyLet","Z":"greyLet","C":"greyLet","V":"greyLet","B":"greyLet","N":"greyLet","M":"greyLet","Ö":"greyLet","Ç":"greyLet"};
+  Map letters = {
+    "E": grayLet,
+    "R": grayLet,
+    "T": grayLet,
+    "Y": grayLet,
+    "U": grayLet,
+    "I": grayLet,
+    "O": grayLet,
+    "P": grayLet,
+    "Ğ": grayLet,
+    "Ü": grayLet,
+    "A": grayLet,
+    "S": grayLet,
+    "D": grayLet,
+    "F": grayLet,
+    "G": grayLet,
+    "H": grayLet,
+    "J": grayLet,
+    "K": grayLet,
+    "L": grayLet,
+    "Ş": grayLet,
+    "İ": grayLet,
+    "Z": grayLet,
+    "C": grayLet,
+    "V": grayLet,
+    "B": grayLet,
+    "N": grayLet,
+    "M": grayLet,
+    "Ö": grayLet,
+    "Ç": grayLet
+  };
+  Map letterss = {
+    "E": "greyLet",
+    "R": "greyLet",
+    "T": "greyLet",
+    "Y": "greyLet",
+    "U": "greyLet",
+    "I": "greyLet",
+    "O": "greyLet",
+    "P": "greyLet",
+    "Ğ": "greyLet",
+    "Ü": "greyLet",
+    "A": "greyLet",
+    "S": "greyLet",
+    "D": "greyLet",
+    "F": "greyLet",
+    "G": "greyLet",
+    "H": "greyLet",
+    "J": "greyLet",
+    "K": "greyLet",
+    "L": "greyLet",
+    "Ş": "greyLet",
+    "İ": "greyLet",
+    "Z": "greyLet",
+    "C": "greyLet",
+    "V": "greyLet",
+    "B": "greyLet",
+    "N": "greyLet",
+    "M": "greyLet",
+    "Ö": "greyLet",
+    "Ç": "greyLet"
+  };
   String day = "";
   String first = "     ";
   String second = "     ";
@@ -88,14 +145,17 @@ class _MyHomePageState extends State<MyHomePage> {
   String fourth = "     ";
   String fifth = "     ";
   String sixth = "     ";
-  bool isFirst=false;
-  bool isSecond=false;
-  bool isThird=false;
-  bool isFourth=false;
-  bool isFifth=false;
-  bool isSixth=false;
+  bool isFirst = false;
+  bool isSecond = false;
+  bool isThird = false;
+  bool isFourth = false;
+  bool isFifth = false;
+  bool isSixth = false;
   bool IsEnabled = true;
   bool isNew = true;
+  bool pointAdded = false;
+  int point = 0;
+  int streak = 0;
   @override
   void initState() {
     setState(() {
@@ -106,278 +166,363 @@ class _MyHomePageState extends State<MyHomePage> {
       getPreferances();
     });
   }
+
   _showDialog() async {
     await Future.delayed(Duration(milliseconds: 50));
-    var  displayWidth = MediaQuery.of(context).size.width;
-    var  displayHeight = MediaQuery.of(context).size.height;
-    if(isNew){
-    showDialog<String>(
-      context: context,
-      builder: (BuildContext context) => AlertDialog(
-        backgroundColor: Color.fromRGBO(18, 18, 19,1),
-        content: Container(width: displayWidth*0.8,
-          height: displayHeight*0.72,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text("WORDLE'i 6 denemede bulun.",style: TextStyle(color: Colors.white),),
-                ],
-              ),
-              SizedBox(height: 15,),
-              Text("Her tahmin 5 harfli doğru bir kelime olmalıdır. Göndermek için enter'a basın.",style: TextStyle(color: Colors.white),),
-              SizedBox(height: 15,),
-              Text("Her tahminden sonra kutucukların renkleri tahmininizin yakınlığına göre değişecektir.",style: TextStyle(color: Colors.white),),
-              SizedBox(height: 15,),
-              Container(width: displayWidth*0.8,height: 2,color: Color.fromRGBO(58, 58, 60,1),),
-              SizedBox(height: 15,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text("Örnekler", style: TextStyle(color: Colors.white,fontSize: 30,),textAlign: TextAlign.left,),
-                ],
-              ),
-              SizedBox(height: 15,),
-              Row(
-                children: [
-                  Container(
-                    width: displayWidth / 8,
-                    height: displayWidth / 8,
-                    decoration: greenDec,
-                    child: Text("D",
-                        style: TextStyle(
-                            color: Color.fromRGBO(215, 218, 220, 1),
-                            fontSize: 35)),
-                    alignment: Alignment(0.0, 0.0),
-                  ),
-                  SizedBox(width: 5,),
-                  Container(
-                    width: displayWidth / 8,
-                    height: displayWidth / 8,
-                    decoration: blackDec,
-                    child: Text("E",
-                        style: TextStyle(
-                            color: Color.fromRGBO(215, 218, 220, 1),
-                            fontSize: 35)),
-                    alignment: Alignment(0.0, 0.0),
-                  ),
-                  SizedBox(width: 5,),
-                  Container(
-                    width: displayWidth / 8,
-                    height: displayWidth / 8,
-                    decoration: blackDec,
-                    child: Text("N",
-                        style: TextStyle(
-                            color: Color.fromRGBO(215, 218, 220, 1),
-                            fontSize: 35)),
-                    alignment: Alignment(0.0, 0.0),
-                  ),
-                  SizedBox(width: 5,),
-                  Container(
-                    width: displayWidth / 8,
-                    height: displayWidth / 8,
-                    decoration: blackDec,
-                    child: Text("İ",
-                        style: TextStyle(
-                            color: Color.fromRGBO(215, 218, 220, 1),
-                            fontSize: 35)),
-                    alignment: Alignment(0.0, 0.0),
-                  ),
-                  SizedBox(width: 5,),
-                  Container(
-                    width: displayWidth / 8,
-                    height: displayWidth / 8,
-                    decoration: blackDec,
-                    child: Text("Z",
-                        style: TextStyle(
-                            color: Color.fromRGBO(215, 218, 220, 1),
-                            fontSize: 35)),
-                    alignment: Alignment(0.0, 0.0),
-                  ),
-                ],
-              ),
-              SizedBox(height: 15,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text("D harfi kelimede var ve doğru yerde.",style: TextStyle(color: Colors.white),),
-                ],
-              ),
-              SizedBox(height: 15,),
-              Row(
-                children: [
-                  Container(
-                    width: displayWidth / 8,
-                    height: displayWidth / 8,
-                    decoration: blackDec,
-                    child: Text("R",
-                        style: TextStyle(
-                            color: Color.fromRGBO(215, 218, 220, 1),
-                            fontSize: 35)),
-                    alignment: Alignment(0.0, 0.0),
-                  ),
-                  SizedBox(width: 5,),
-                  Container(
-                    width: displayWidth / 8,
-                    height: displayWidth / 8,
-                    decoration: yellowDec,
-                    child: Text("A",
-                        style: TextStyle(
-                            color: Color.fromRGBO(215, 218, 220, 1),
-                            fontSize: 35)),
-                    alignment: Alignment(0.0, 0.0),
-                  ),
-                  SizedBox(width: 5,),
-                  Container(
-                    width: displayWidth / 8,
-                    height: displayWidth / 8,
-                    decoration: blackDec,
-                    child: Text("K",
-                        style: TextStyle(
-                            color: Color.fromRGBO(215, 218, 220, 1),
-                            fontSize: 35)),
-                    alignment: Alignment(0.0, 0.0),
-                  ),
-                  SizedBox(width: 5,),
-                  Container(
-                    width: displayWidth / 8,
-                    height: displayWidth / 8,
-                    decoration: blackDec,
-                    child: Text("E",
-                        style: TextStyle(
-                            color: Color.fromRGBO(215, 218, 220, 1),
-                            fontSize: 35)),
-                    alignment: Alignment(0.0, 0.0),
-                  ),
-                  SizedBox(width: 5,),
-                  Container(
-                    width: displayWidth / 8,
-                    height: displayWidth / 8,
-                    decoration: blackDec,
-                    child: Text("T",
-                        style: TextStyle(
-                            color: Color.fromRGBO(215, 218, 220, 1),
-                            fontSize: 35)),
-                    alignment: Alignment(0.0, 0.0),
-                  ),
-                ],
-              ),
-              SizedBox(height: 15,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text("A harfi kelimede var fakat yanlış yerde.",style: TextStyle(color: Colors.white),),
-                ],
-              ),
-              SizedBox(height: 15,),
-              Row(
-                children: [
-                  Container(
-                    width: displayWidth / 8,
-                    height: displayWidth / 8,
-                    decoration: blackDec,
-                    child: Text("T",
-                        style: TextStyle(
-                            color: Color.fromRGBO(215, 218, 220, 1),
-                            fontSize: 35)),
-                    alignment: Alignment(0.0, 0.0),
-                  ),
-                  SizedBox(width: 5,),
-                  Container(
-                    width: displayWidth / 8,
-                    height: displayWidth / 8,
-                    decoration: blackDec,
-                    child: Text("A",
-                        style: TextStyle(
-                            color: Color.fromRGBO(215, 218, 220, 1),
-                            fontSize: 35)),
-                    alignment: Alignment(0.0, 0.0),
-                  ),
-                  SizedBox(width: 5,),
-                  Container(
-                    width: displayWidth / 8,
-                    height: displayWidth / 8,
-                    decoration: blackDec,
-                    child: Text("R",
-                        style: TextStyle(
-                            color: Color.fromRGBO(215, 218, 220, 1),
-                            fontSize: 35)),
-                    alignment: Alignment(0.0, 0.0),
-                  ),
-                  SizedBox(width: 5,),
-                  Container(
-                    width: displayWidth / 8,
-                    height: displayWidth / 8,
-                    decoration: blackDec,
-                    child: Text("E",
-                        style: TextStyle(
-                            color: Color.fromRGBO(215, 218, 220, 1),
-                            fontSize: 35)),
-                    alignment: Alignment(0.0, 0.0),
-                  ),
-                  SizedBox(width: 5,),
-                  Container(
-                    width: displayWidth / 8,
-                    height: displayWidth / 8,
-                    decoration: grayDec,
-                    child: Text("T",
-                        style: TextStyle(
-                            color: Color.fromRGBO(215, 218, 220, 1),
-                            fontSize: 35)),
-                    alignment: Alignment(0.0, 0.0),
-                  ),
-                ],
-              ),
-              SizedBox(height: 15,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text("T harfi kelimede yok.",style: TextStyle(color: Colors.white),),
-                ],
-              ),
-              SizedBox(height: 15,),
-              Container(width: displayWidth*0.8,height: 2,color: Color.fromRGBO(58, 58, 60,1),),
-              SizedBox(height: 15,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text("Her gün yeni bir WORDLE gelir!",style: TextStyle(color: Colors.white),),
-                ],
-              ),
-
-
-
-
-
-            ],
+    var displayWidth = MediaQuery.of(context).size.width;
+    var displayHeight = MediaQuery.of(context).size.height;
+    if (isNew) {
+      showDialog<String>(
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+          backgroundColor: Color.fromRGBO(18, 18, 19, 1),
+          content: Container(
+            width: displayWidth * 0.8,
+            height: displayHeight * 0.72,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      "WORDLE'i 6 denemede bulun.",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                Text(
+                  "Her tahmin 5 harfli doğru bir kelime olmalıdır. Göndermek için enter'a basın.",
+                  style: TextStyle(color: Colors.white),
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                Text(
+                  "Her tahminden sonra kutucukların renkleri tahmininizin yakınlığına göre değişecektir.",
+                  style: TextStyle(color: Colors.white),
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                Container(
+                  width: displayWidth * 0.8,
+                  height: 2,
+                  color: Color.fromRGBO(58, 58, 60, 1),
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Örnekler",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 30,
+                      ),
+                      textAlign: TextAlign.left,
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                Row(
+                  children: [
+                    Container(
+                      width: displayWidth / 8,
+                      height: displayWidth / 8,
+                      decoration: greenDec,
+                      child: Text("D",
+                          style: TextStyle(
+                              color: Color.fromRGBO(215, 218, 220, 1),
+                              fontSize: 35)),
+                      alignment: Alignment(0.0, 0.0),
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Container(
+                      width: displayWidth / 8,
+                      height: displayWidth / 8,
+                      decoration: blackDec,
+                      child: Text("E",
+                          style: TextStyle(
+                              color: Color.fromRGBO(215, 218, 220, 1),
+                              fontSize: 35)),
+                      alignment: Alignment(0.0, 0.0),
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Container(
+                      width: displayWidth / 8,
+                      height: displayWidth / 8,
+                      decoration: blackDec,
+                      child: Text("N",
+                          style: TextStyle(
+                              color: Color.fromRGBO(215, 218, 220, 1),
+                              fontSize: 35)),
+                      alignment: Alignment(0.0, 0.0),
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Container(
+                      width: displayWidth / 8,
+                      height: displayWidth / 8,
+                      decoration: blackDec,
+                      child: Text("İ",
+                          style: TextStyle(
+                              color: Color.fromRGBO(215, 218, 220, 1),
+                              fontSize: 35)),
+                      alignment: Alignment(0.0, 0.0),
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Container(
+                      width: displayWidth / 8,
+                      height: displayWidth / 8,
+                      decoration: blackDec,
+                      child: Text("Z",
+                          style: TextStyle(
+                              color: Color.fromRGBO(215, 218, 220, 1),
+                              fontSize: 35)),
+                      alignment: Alignment(0.0, 0.0),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      "D harfi kelimede var ve doğru yerde.",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                Row(
+                  children: [
+                    Container(
+                      width: displayWidth / 8,
+                      height: displayWidth / 8,
+                      decoration: blackDec,
+                      child: Text("R",
+                          style: TextStyle(
+                              color: Color.fromRGBO(215, 218, 220, 1),
+                              fontSize: 35)),
+                      alignment: Alignment(0.0, 0.0),
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Container(
+                      width: displayWidth / 8,
+                      height: displayWidth / 8,
+                      decoration: yellowDec,
+                      child: Text("A",
+                          style: TextStyle(
+                              color: Color.fromRGBO(215, 218, 220, 1),
+                              fontSize: 35)),
+                      alignment: Alignment(0.0, 0.0),
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Container(
+                      width: displayWidth / 8,
+                      height: displayWidth / 8,
+                      decoration: blackDec,
+                      child: Text("K",
+                          style: TextStyle(
+                              color: Color.fromRGBO(215, 218, 220, 1),
+                              fontSize: 35)),
+                      alignment: Alignment(0.0, 0.0),
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Container(
+                      width: displayWidth / 8,
+                      height: displayWidth / 8,
+                      decoration: blackDec,
+                      child: Text("E",
+                          style: TextStyle(
+                              color: Color.fromRGBO(215, 218, 220, 1),
+                              fontSize: 35)),
+                      alignment: Alignment(0.0, 0.0),
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Container(
+                      width: displayWidth / 8,
+                      height: displayWidth / 8,
+                      decoration: blackDec,
+                      child: Text("T",
+                          style: TextStyle(
+                              color: Color.fromRGBO(215, 218, 220, 1),
+                              fontSize: 35)),
+                      alignment: Alignment(0.0, 0.0),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      "A harfi kelimede var fakat yanlış yerde.",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                Row(
+                  children: [
+                    Container(
+                      width: displayWidth / 8,
+                      height: displayWidth / 8,
+                      decoration: blackDec,
+                      child: Text("T",
+                          style: TextStyle(
+                              color: Color.fromRGBO(215, 218, 220, 1),
+                              fontSize: 35)),
+                      alignment: Alignment(0.0, 0.0),
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Container(
+                      width: displayWidth / 8,
+                      height: displayWidth / 8,
+                      decoration: blackDec,
+                      child: Text("A",
+                          style: TextStyle(
+                              color: Color.fromRGBO(215, 218, 220, 1),
+                              fontSize: 35)),
+                      alignment: Alignment(0.0, 0.0),
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Container(
+                      width: displayWidth / 8,
+                      height: displayWidth / 8,
+                      decoration: blackDec,
+                      child: Text("R",
+                          style: TextStyle(
+                              color: Color.fromRGBO(215, 218, 220, 1),
+                              fontSize: 35)),
+                      alignment: Alignment(0.0, 0.0),
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Container(
+                      width: displayWidth / 8,
+                      height: displayWidth / 8,
+                      decoration: blackDec,
+                      child: Text("E",
+                          style: TextStyle(
+                              color: Color.fromRGBO(215, 218, 220, 1),
+                              fontSize: 35)),
+                      alignment: Alignment(0.0, 0.0),
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Container(
+                      width: displayWidth / 8,
+                      height: displayWidth / 8,
+                      decoration: grayDec,
+                      child: Text("T",
+                          style: TextStyle(
+                              color: Color.fromRGBO(215, 218, 220, 1),
+                              fontSize: 35)),
+                      alignment: Alignment(0.0, 0.0),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      "T harfi kelimede yok.",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                Container(
+                  width: displayWidth * 0.8,
+                  height: 2,
+                  color: Color.fromRGBO(58, 58, 60, 1),
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Her gün yeni bir WORDLE gelir!",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                saveNew();
+                Navigator.of(context).pop();
+              },
+              child: const Text('Tamam'),
+            ),
+          ],
         ),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () {
-              saveNew();
-              Navigator.of(context).pop();
-            },
-            child: const Text('Tamam'),
-          ),
-        ],
-      ),
-    );
-  }}
+      );
+    }
+  }
+
   Future<void> saveNew() async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setBool("isNew", false);
   }
-bool isWord (String wrd){
-  for (String element in words) {
-    if (element == wrd) {
-      return true;
+
+  bool isWord(String wrd) {
+    for (String element in words) {
+      if (element == wrd) {
+        return true;
+      }
     }
+    return false;
   }
-  return false;
-}
+
   AddItem(String item) async {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
@@ -411,15 +556,15 @@ bool isWord (String wrd){
         if (first == item) {
           first = '     ';
         } else if (second == item) {
-          second='     ';
+          second = '     ';
         } else if (third == item) {
-          third='     ';
+          third = '     ';
         } else if (fourth == item) {
-          fourth='     ';
+          fourth = '     ';
         } else if (fifth == item) {
-          fifth='     ';
+          fifth = '     ';
         } else if (sixth == item) {
-          sixth='     ';
+          sixth = '     ';
         }
         showDialog<String>(
           context: context,
@@ -444,10 +589,18 @@ bool isWord (String wrd){
     setState(() {
       switch (i) {
         case 1:
-          isFirst=true;
+          isFirst = true;
           firsts = comp(first);
           if (first == todaysWord) {
             IsEnabled = false;
+            if (pointAdded == false) {
+              pointAdded = true;
+              point+=6;
+              streak++;
+              prefs.setInt("point", point);
+              prefs.setInt("streak", streak);
+              prefs.setBool('pointAdded', pointAdded);
+            }
             prefs.setBool('IsEnabled', false);
             showDialog<String>(
               context: context,
@@ -467,10 +620,18 @@ bool isWord (String wrd){
           }
           break;
         case 2:
-          isSecond=true;
+          isSecond = true;
           seconds = comp(second);
           if (second == todaysWord) {
             IsEnabled = false;
+            if (pointAdded == false) {
+              pointAdded = true;
+              point+=5;
+              streak++;
+              prefs.setInt("point", point);
+              prefs.setInt("streak", streak);
+              prefs.setBool('pointAdded', pointAdded);
+            }
             prefs.setBool('IsEnabled', false);
             showDialog<String>(
               context: context,
@@ -490,10 +651,18 @@ bool isWord (String wrd){
           }
           break;
         case 3:
-          isThird=true;
+          isThird = true;
           thirds = comp(third);
           if (third == todaysWord) {
             IsEnabled = false;
+            if (pointAdded == false) {
+              pointAdded = true;
+              point+=4;
+              streak++;
+              prefs.setInt("point", point);
+              prefs.setInt("streak", streak);
+              prefs.setBool('pointAdded', pointAdded);
+            }
             prefs.setBool('IsEnabled', false);
             showDialog<String>(
               context: context,
@@ -513,10 +682,18 @@ bool isWord (String wrd){
           }
           break;
         case 4:
-          isFourth=true;
+          isFourth = true;
           fourths = comp(fourth);
           if (fourth == todaysWord) {
             IsEnabled = false;
+            if (pointAdded == false) {
+              pointAdded = true;
+              point+=3;
+              streak++;
+              prefs.setInt("point", point);
+              prefs.setInt("streak", streak);
+              prefs.setBool('pointAdded', pointAdded);
+            }
             prefs.setBool('IsEnabled', false);
             showDialog<String>(
               context: context,
@@ -536,10 +713,18 @@ bool isWord (String wrd){
           }
           break;
         case 5:
-          isFifth=true;
+          isFifth = true;
           fifths = comp(fifth);
           if (fifth == todaysWord) {
             IsEnabled = false;
+            if (pointAdded == false) {
+              pointAdded = true;
+              point+=2;
+              streak++;
+              prefs.setInt("point", point);
+              prefs.setInt("streak", streak);
+              prefs.setBool('pointAdded', pointAdded);
+            }
             prefs.setBool('IsEnabled', false);
             showDialog<String>(
               context: context,
@@ -559,10 +744,18 @@ bool isWord (String wrd){
           }
           break;
         case 6:
-          isSixth=true;
+          isSixth = true;
           sixths = comp(sixth);
           if (sixth == todaysWord) {
             IsEnabled = false;
+            if (pointAdded == false) {
+              pointAdded = true;
+              point++;
+              streak++;
+              prefs.setInt("point", point);
+              prefs.setInt("streak", streak);
+              prefs.setBool('pointAdded', pointAdded);
+            }
             prefs.setBool('IsEnabled', false);
             showDialog<String>(
               context: context,
@@ -581,6 +774,12 @@ bool isWord (String wrd){
             );
           } else {
             IsEnabled = false;
+            if (pointAdded == false) {
+              pointAdded = true;
+              streak = 0;
+              prefs.setInt("streak", streak);
+              prefs.setBool('pointAdded', pointAdded);
+            }
             prefs.setBool('IsEnabled', false);
             showDialog<String>(
               context: context,
@@ -608,8 +807,8 @@ bool isWord (String wrd){
     for (int i = 0; i < indexed.length; i++) {
       if (tdW[i] == indexed[i]) {
         list[i] = greenDec;
-        letters[indexed[i]]=greenLet;
-        letterss[indexed[i]]="greenLet";
+        letters[indexed[i]] = greenLet;
+        letterss[indexed[i]] = "greenLet";
         var c = "";
         var k = "";
         for (int j = 0; j < tdW.length; j++) {
@@ -631,9 +830,10 @@ bool isWord (String wrd){
         indexed = k;
       } else {
         list[i] = (grayDec);
-        if(letterss[indexed[i]].toString()!="greenLet" && letterss[indexed[i]].toString()!="yellowLet"){
-          letters[indexed[i]]=blackLet;
-          letterss[indexed[i]]="blackLet";
+        if (letterss[indexed[i]].toString() != "greenLet" &&
+            letterss[indexed[i]].toString() != "yellowLet") {
+          letters[indexed[i]] = blackLet;
+          letterss[indexed[i]] = "blackLet";
         }
       }
     }
@@ -641,9 +841,9 @@ bool isWord (String wrd){
       if (indexed[i] != ' ') {
         if (tdW.contains(indexed[i])) {
           list[i] = yellowDec;
-          if(letterss[indexed[i]].toString()!="greenLet"){
-            letterss[indexed[i]]="yellowLet";
-            letters[indexed[i]]=yellowLet;
+          if (letterss[indexed[i]].toString() != "greenLet") {
+            letterss[indexed[i]] = "yellowLet";
+            letters[indexed[i]] = yellowLet;
           }
           var d = tdW.indexOf(indexed[i]);
           var c = "";
@@ -658,9 +858,10 @@ bool isWord (String wrd){
           tdW = c;
         } else {
           list[i] = grayDec;
-          if(letterss[indexed[i]].toString()!="greenLet" && letterss[indexed[i]].toString()!="yellowLet"){
-            letters[indexed[i]]=blackLet;
-            letterss[indexed[i]]="blackLet";
+          if (letterss[indexed[i]].toString() != "greenLet" &&
+              letterss[indexed[i]].toString() != "yellowLet") {
+            letters[indexed[i]] = blackLet;
+            letterss[indexed[i]] = "blackLet";
           }
         }
       }
@@ -670,7 +871,7 @@ bool isWord (String wrd){
 
   Future<void> getPreferances() async {
     final prefs = await SharedPreferences.getInstance();
-    isNew = prefs.getBool("isNew")??true;
+    isNew = prefs.getBool("isNew") ?? true;
     _showDialog();
     day = prefs.getString('day') ??
         DateFormat('yyyy-MM-dd')
@@ -708,6 +909,7 @@ bool isWord (String wrd){
         await prefs.remove('isFourth');
         await prefs.remove('isFifth');
         await prefs.remove('isSixth');
+        await prefs.remove('pointAdded');
         getTodaysWord();
       }
     } else {
@@ -725,6 +927,9 @@ bool isWord (String wrd){
       isFourth = prefs.getBool('isFourth') ?? false;
       isFifth = prefs.getBool('isFifth') ?? false;
       isSixth = prefs.getBool('isSixth') ?? false;
+      pointAdded = prefs.getBool('pointAdded') ?? false;
+      point = prefs.getInt('point') ?? 0;
+      streak = prefs.getInt('streak') ?? 0;
       if (first != "     ") {
         compare(1);
       }
@@ -757,108 +962,95 @@ bool isWord (String wrd){
   }
 
   String replaceCharAt(String oldString, int index, String newChar) {
-    return oldString.substring(0, index) + newChar + oldString.substring(index + 1);
+    return oldString.substring(0, index) +
+        newChar +
+        oldString.substring(index + 1);
   }
 
-  void addLetter(String item){
+  void addLetter(String item) {
     setState(() {
-      if(isFirst==false){
-        if(first.contains(' ')){
+      if (isFirst == false) {
+        if (first.contains(' ')) {
           int a = first.indexOf(' ');
           first = replaceCharAt(first, a, item);
         }
-      }
-      else if(isSecond==false){
-        if(second.contains(' ')){
+      } else if (isSecond == false) {
+        if (second.contains(' ')) {
           int a = second.indexOf(' ');
           second = replaceCharAt(second, a, item);
         }
-      }
-      else if(isThird==false){
-        if(third.contains(' ')){
+      } else if (isThird == false) {
+        if (third.contains(' ')) {
           int a = third.indexOf(' ');
           third = replaceCharAt(third, a, item);
         }
-      }
-      else if(isFourth==false){
-        if(fourth.contains(' ')){
+      } else if (isFourth == false) {
+        if (fourth.contains(' ')) {
           int a = fourth.indexOf(' ');
           fourth = replaceCharAt(fourth, a, item);
         }
-      }
-      else if(isFifth==false){
-        if(fifth.contains(' ')){
+      } else if (isFifth == false) {
+        if (fifth.contains(' ')) {
           int a = fifth.indexOf(' ');
           fifth = replaceCharAt(fifth, a, item);
         }
-      }
-      else if(isSixth==false){
-        if(sixth.contains(' ')){
+      } else if (isSixth == false) {
+        if (sixth.contains(' ')) {
           int a = sixth.indexOf(' ');
           sixth = replaceCharAt(sixth, a, item);
         }
       }
     });
   }
-  void removeLetter(){
+
+  void removeLetter() {
     setState(() {
-      if(isFirst==false && first!='     '){
-        if(first.contains(' ')){
+      if (isFirst == false && first != '     ') {
+        if (first.contains(' ')) {
           int a = first.indexOf(' ');
-          first = replaceCharAt(first, a-1, ' ');
-        }
-        else{
-          int a = first.length-1;
+          first = replaceCharAt(first, a - 1, ' ');
+        } else {
+          int a = first.length - 1;
           first = replaceCharAt(first, a, ' ');
         }
-      }
-      else if(isSecond==false && second!='     '){
-        if(second.contains(' ')){
+      } else if (isSecond == false && second != '     ') {
+        if (second.contains(' ')) {
           int a = second.indexOf(' ');
-          second = replaceCharAt(second, a-1, ' ');
-        }
-        else{
-          int a = second.length-1;
+          second = replaceCharAt(second, a - 1, ' ');
+        } else {
+          int a = second.length - 1;
           second = replaceCharAt(second, a, ' ');
         }
-      }
-      else if(isThird==false && third!='     '){
-        if(third.contains(' ')){
+      } else if (isThird == false && third != '     ') {
+        if (third.contains(' ')) {
           int a = third.indexOf(' ');
-          third = replaceCharAt(third, a-1, ' ');
-        }
-        else{
-          int a = third.length-1;
+          third = replaceCharAt(third, a - 1, ' ');
+        } else {
+          int a = third.length - 1;
           third = replaceCharAt(third, a, ' ');
         }
-      }
-      else if(isFourth==false && fourth!= '     '){
-        if(fourth.contains(' ')){
+      } else if (isFourth == false && fourth != '     ') {
+        if (fourth.contains(' ')) {
           int a = fourth.indexOf(' ');
-          fourth = replaceCharAt(fourth, a-1, ' ');
-        }
-        else{
-          int a = fourth.length-1;
+          fourth = replaceCharAt(fourth, a - 1, ' ');
+        } else {
+          int a = fourth.length - 1;
           fourth = replaceCharAt(fourth, a, ' ');
         }
-      }
-      else if(isFifth==false && fifth!='     '){
-        if(fifth.contains(' ')){
+      } else if (isFifth == false && fifth != '     ') {
+        if (fifth.contains(' ')) {
           int a = fifth.indexOf(' ');
-          fifth = replaceCharAt(fifth, a-1, ' ');
-        }
-        else{
-          int a = first.length-1;
+          fifth = replaceCharAt(fifth, a - 1, ' ');
+        } else {
+          int a = first.length - 1;
           fifth = replaceCharAt(fifth, a, ' ');
         }
-      }
-      else if(isSixth==false && sixth!='     '){
-        if(sixth.contains(' ')){
+      } else if (isSixth == false && sixth != '     ') {
+        if (sixth.contains(' ')) {
           int a = sixth.indexOf(' ');
-          sixth = replaceCharAt(sixth, a-1, ' ');
-        }
-        else{
-          int a = sixth.length-1;
+          sixth = replaceCharAt(sixth, a - 1, ' ');
+        } else {
+          int a = sixth.length - 1;
           sixth = replaceCharAt(sixth, a, ' ');
         }
       }
@@ -874,9 +1066,24 @@ bool isWord (String wrd){
     displayHeight = MediaQuery.of(context).size.height;
     return Scaffold(
         appBar: AppBar(
+          leading: Row(children: [
+            SizedBox(width: 7,),
+            Icon(Icons.local_fire_department,color: Color.fromRGBO(215, 218, 220, 1),size: 25,),
+            SizedBox(width: 3,),
+            Text(streak.toString(),style: TextStyle(color: Color.fromRGBO(215, 218, 220, 1),fontSize: 25),)
+          ],),
+          actions: [
+            Row(children: [
+              Icon(Icons.star, color: Color.fromRGBO(215, 218, 220, 1),size: 25,),
+              SizedBox(width: 3,),
+              Text(point.toString(),style: TextStyle(color: Color.fromRGBO(215, 218, 220, 1),fontSize: 25),),
+              SizedBox(width: 7,),
+
+            ],),
+          ],
           title: Center(child: Text('Wordle')),
           titleTextStyle:
-              TextStyle(color: Color.fromRGBO(215, 218, 220, 1), fontSize: 20),
+              TextStyle(color: Color.fromRGBO(215, 218, 220, 1), fontSize: 25),
           backgroundColor: Color.fromRGBO(18, 18, 19, 1),
         ),
         body: Container(
@@ -885,430 +1092,430 @@ bool isWord (String wrd){
             Container(
                 child: Expanded(
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              width: displayWidth / 6.4,
-                              height: displayWidth / 6.4,
-                              decoration: firsts[0],
-                              child: Text(first[0],
-                                  style: TextStyle(
-                                      color: Color.fromRGBO(215, 218, 220, 1),
-                                      fontSize: 35)),
-                              alignment: Alignment(0.0, 0.0),
-                            ),
-                            SizedBox(
-                              width: displayWidth / 48,
-                            ),
-                            Container(
-                              width: displayWidth / 6.4,
-                              height: displayWidth / 6.4,
-                              decoration: firsts[1],
-                              child: Text(first[1],
-                                  style: TextStyle(
-                                      color: Color.fromRGBO(215, 218, 220, 1),
-                                      fontSize: 35)),
-                              alignment: Alignment(0.0, 0.0),
-                            ),
-                            SizedBox(
-                              width: displayWidth / 48,
-                            ),
-                            Container(
-                              width: displayWidth / 6.4,
-                              height: displayWidth / 6.4,
-                              decoration: firsts[2],
-                              child: Text(first[2],
-                                  style: TextStyle(
-                                      color: Color.fromRGBO(215, 218, 220, 1),
-                                      fontSize: 35)),
-                              alignment: Alignment(0.0, 0.0),
-                            ),
-                            SizedBox(
-                              width: displayWidth / 48,
-                            ),
-                            Container(
-                              width: displayWidth / 6.4,
-                              height: displayWidth / 6.4,
-                              decoration: firsts[3],
-                              child: Text(first[3],
-                                  style: TextStyle(
-                                      color: Color.fromRGBO(215, 218, 220, 1),
-                                      fontSize: 35)),
-                              alignment: Alignment(0.0, 0.0),
-                            ),
-                            SizedBox(
-                              width: displayWidth / 48,
-                            ),
-                            Container(
-                              width: displayWidth / 6.4,
-                              height: displayWidth / 6.4,
-                              decoration: firsts[4],
-                              child: Text(first[4],
-                                  style: TextStyle(
-                                      color: Color.fromRGBO(215, 218, 220, 1),
-                                      fontSize: 35)),
-                              alignment: Alignment(0.0, 0.0),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              width: displayWidth / 6.4,
-                              height: displayWidth / 6.4,
-                              decoration: seconds[0],
-                              child: Text(second[0],
-                                  style: TextStyle(
-                                      color: Color.fromRGBO(215, 218, 220, 1),
-                                      fontSize: 35)),
-                              alignment: Alignment(0.0, 0.0),
-                            ),
-                            SizedBox(
-                              width: displayWidth / 48,
-                            ),
-                            Container(
-                              width: displayWidth / 6.4,
-                              height: displayWidth / 6.4,
-                              decoration: seconds[1],
-                              child: Text(second[1],
-                                  style: TextStyle(
-                                      color: Color.fromRGBO(215, 218, 220, 1),
-                                      fontSize: 35)),
-                              alignment: Alignment(0.0, 0.0),
-                            ),
-                            SizedBox(
-                              width: displayWidth / 48,
-                            ),
-                            Container(
-                              width: displayWidth / 6.4,
-                              height: displayWidth / 6.4,
-                              decoration: seconds[2],
-                              child: Text(second[2],
-                                  style: TextStyle(
-                                      color: Color.fromRGBO(215, 218, 220, 1),
-                                      fontSize: 35)),
-                              alignment: Alignment(0.0, 0.0),
-                            ),
-                            SizedBox(
-                              width: displayWidth / 48,
-                            ),
-                            Container(
-                              width: displayWidth / 6.4,
-                              height: displayWidth / 6.4,
-                              decoration: seconds[3],
-                              child: Text(second[3],
-                                  style: TextStyle(
-                                      color: Color.fromRGBO(215, 218, 220, 1),
-                                      fontSize: 35)),
-                              alignment: Alignment(0.0, 0.0),
-                            ),
-                            SizedBox(
-                              width: displayWidth / 48,
-                            ),
-                            Container(
-                              width: displayWidth / 6.4,
-                              height: displayWidth / 6.4,
-                              decoration: seconds[4],
-                              child: Text(second[4],
-                                  style: TextStyle(
-                                      color: Color.fromRGBO(215, 218, 220, 1),
-                                      fontSize: 35)),
-                              alignment: Alignment(0.0, 0.0),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              width: displayWidth / 6.4,
-                              height: displayWidth / 6.4,
-                              decoration: thirds[0],
-                              child: Text(third[0],
-                                  style: TextStyle(
-                                      color: Color.fromRGBO(215, 218, 220, 1),
-                                      fontSize: 35)),
-                              alignment: Alignment(0.0, 0.0),
-                            ),
-                            SizedBox(
-                              width: displayWidth / 48,
-                            ),
-                            Container(
-                              width: displayWidth / 6.4,
-                              height: displayWidth / 6.4,
-                              decoration: thirds[1],
-                              child: Text(third[1],
-                                  style: TextStyle(
-                                      color: Color.fromRGBO(215, 218, 220, 1),
-                                      fontSize: 35)),
-                              alignment: Alignment(0.0, 0.0),
-                            ),
-                            SizedBox(
-                              width: displayWidth / 48,
-                            ),
-                            Container(
-                              width: displayWidth / 6.4,
-                              height: displayWidth / 6.4,
-                              decoration: thirds[2],
-                              child: Text(third[2],
-                                  style: TextStyle(
-                                      color: Color.fromRGBO(215, 218, 220, 1),
-                                      fontSize: 35)),
-                              alignment: Alignment(0.0, 0.0),
-                            ),
-                            SizedBox(
-                              width: displayWidth / 48,
-                            ),
-                            Container(
-                              width: displayWidth / 6.4,
-                              height: displayWidth / 6.4,
-                              decoration: thirds[3],
-                              child: Text(third[3],
-                                  style: TextStyle(
-                                      color: Color.fromRGBO(215, 218, 220, 1),
-                                      fontSize: 35)),
-                              alignment: Alignment(0.0, 0.0),
-                            ),
-                            SizedBox(
-                              width: displayWidth / 48,
-                            ),
-                            Container(
-                              width: displayWidth / 6.4,
-                              height: displayWidth / 6.4,
-                              decoration: thirds[4],
-                              child: Text(third[4],
-                                  style: TextStyle(
-                                      color: Color.fromRGBO(215, 218, 220, 1),
-                                      fontSize: 35)),
-                              alignment: Alignment(0.0, 0.0),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              width: displayWidth / 6.4,
-                              height: displayWidth / 6.4,
-                              decoration: fourths[0],
-                              child: Text(fourth[0],
-                                  style: TextStyle(
-                                      color: Color.fromRGBO(215, 218, 220, 1),
-                                      fontSize: 35)),
-                              alignment: Alignment(0.0, 0.0),
-                            ),
-                            SizedBox(
-                              width: displayWidth / 48,
-                            ),
-                            Container(
-                              width: displayWidth / 6.4,
-                              height: displayWidth / 6.4,
-                              decoration: fourths[1],
-                              child: Text(fourth[1],
-                                  style: TextStyle(
-                                      color: Color.fromRGBO(215, 218, 220, 1),
-                                      fontSize: 35)),
-                              alignment: Alignment(0.0, 0.0),
-                            ),
-                            SizedBox(
-                              width: displayWidth / 48,
-                            ),
-                            Container(
-                              width: displayWidth / 6.4,
-                              height: displayWidth / 6.4,
-                              decoration: fourths[2],
-                              child: Text(fourth[2],
-                                  style: TextStyle(
-                                      color: Color.fromRGBO(215, 218, 220, 1),
-                                      fontSize: 35)),
-                              alignment: Alignment(0.0, 0.0),
-                            ),
-                            SizedBox(
-                              width: displayWidth / 48,
-                            ),
-                            Container(
-                              width: displayWidth / 6.4,
-                              height: displayWidth / 6.4,
-                              decoration: fourths[3],
-                              child: Text(fourth[3],
-                                  style: TextStyle(
-                                      color: Color.fromRGBO(215, 218, 220, 1),
-                                      fontSize: 35)),
-                              alignment: Alignment(0.0, 0.0),
-                            ),
-                            SizedBox(
-                              width: displayWidth / 48,
-                            ),
-                            Container(
-                              width: displayWidth / 6.4,
-                              height: displayWidth / 6.4,
-                              decoration: fourths[4],
-                              child: Text(fourth[4],
-                                  style: TextStyle(
-                                      color: Color.fromRGBO(215, 218, 220, 1),
-                                      fontSize: 35)),
-                              alignment: Alignment(0.0, 0.0),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              width: displayWidth / 6.4,
-                              height: displayWidth / 6.4,
-                              decoration: fifths[0],
-                              child: Text(fifth[0],
-                                  style: TextStyle(
-                                      color: Color.fromRGBO(215, 218, 220, 1),
-                                      fontSize: 35)),
-                              alignment: Alignment(0.0, 0.0),
-                            ),
-                            SizedBox(
-                              width: displayWidth / 48,
-                            ),
-                            Container(
-                              width: displayWidth / 6.4,
-                              height: displayWidth / 6.4,
-                              decoration: fifths[1],
-                              child: Text(fifth[1],
-                                  style: TextStyle(
-                                      color: Color.fromRGBO(215, 218, 220, 1),
-                                      fontSize: 35)),
-                              alignment: Alignment(0.0, 0.0),
-                            ),
-                            SizedBox(
-                              width: displayWidth / 48,
-                            ),
-                            Container(
-                              width: displayWidth / 6.4,
-                              height: displayWidth / 6.4,
-                              decoration: fifths[2],
-                              child: Text(fifth[2],
-                                  style: TextStyle(
-                                      color: Color.fromRGBO(215, 218, 220, 1),
-                                      fontSize: 35)),
-                              alignment: Alignment(0.0, 0.0),
-                            ),
-                            SizedBox(
-                              width: displayWidth / 48,
-                            ),
-                            Container(
-                              width: displayWidth / 6.4,
-                              height: displayWidth / 6.4,
-                              decoration: fifths[3],
-                              child: Text(fifth[3],
-                                  style: TextStyle(
-                                      color: Color.fromRGBO(215, 218, 220, 1),
-                                      fontSize: 35)),
-                              alignment: Alignment(0.0, 0.0),
-                            ),
-                            SizedBox(
-                              width: displayWidth / 48,
-                            ),
-                            Container(
-                              width: displayWidth / 6.4,
-                              height: displayWidth / 6.4,
-                              decoration: fifths[4],
-                              child: Text(fifth[4],
-                                  style: TextStyle(
-                                      color: Color.fromRGBO(215, 218, 220, 1),
-                                      fontSize: 35)),
-                              alignment: Alignment(0.0, 0.0),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              width: displayWidth / 6.4,
-                              height: displayWidth / 6.4,
-                              decoration: sixths[0],
-                              child: Text(sixth[0],
-                                  style: TextStyle(
-                                      color: Color.fromRGBO(215, 218, 220, 1),
-                                      fontSize: 35)),
-                              alignment: Alignment(0.0, 0.0),
-                            ),
-                            SizedBox(
-                              width: displayWidth / 48,
-                            ),
-                            Container(
-                              width: displayWidth / 6.4,
-                              height: displayWidth / 6.4,
-                              decoration: sixths[1],
-                              child: Text(sixth[1],
-                                  style: TextStyle(
-                                      color: Color.fromRGBO(215, 218, 220, 1),
-                                      fontSize: 35)),
-                              alignment: Alignment(0.0, 0.0),
-                            ),
-                            SizedBox(
-                              width: displayWidth / 48,
-                            ),
-                            Container(
-                              width: displayWidth / 6.4,
-                              height: displayWidth / 6.4,
-                              decoration: sixths[2],
-                              child: Text(sixth[2],
-                                  style: TextStyle(
-                                      color: Color.fromRGBO(215, 218, 220, 1),
-                                      fontSize: 35)),
-                              alignment: Alignment(0.0, 0.0),
-                            ),
-                            SizedBox(
-                              width: displayWidth / 48,
-                            ),
-                            Container(
-                              width: displayWidth / 6.4,
-                              height: displayWidth / 6.4,
-                              decoration: sixths[3],
-                              child: Text(sixth[3],
-                                  style: TextStyle(
-                                      color: Color.fromRGBO(215, 218, 220, 1),
-                                      fontSize: 35)),
-                              alignment: Alignment(0.0, 0.0),
-                            ),
-                            SizedBox(
-                              width: displayWidth / 48,
-                            ),
-                            Container(
-                              width: displayWidth / 6.4,
-                              height: displayWidth / 6.4,
-                              decoration: sixths[4],
-                              child: Text(sixth[4],
-                                  style: TextStyle(
-                                      color: Color.fromRGBO(215, 218, 220, 1),
-                                      fontSize: 35)),
-                              alignment: Alignment(0.0, 0.0),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                      ],
-                    ))),
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      width: displayWidth / 6.4,
+                      height: displayWidth / 6.4,
+                      decoration: firsts[0],
+                      child: Text(first[0],
+                          style: TextStyle(
+                              color: Color.fromRGBO(215, 218, 220, 1),
+                              fontSize: 35)),
+                      alignment: Alignment(0.0, 0.0),
+                    ),
+                    SizedBox(
+                      width: displayWidth / 48,
+                    ),
+                    Container(
+                      width: displayWidth / 6.4,
+                      height: displayWidth / 6.4,
+                      decoration: firsts[1],
+                      child: Text(first[1],
+                          style: TextStyle(
+                              color: Color.fromRGBO(215, 218, 220, 1),
+                              fontSize: 35)),
+                      alignment: Alignment(0.0, 0.0),
+                    ),
+                    SizedBox(
+                      width: displayWidth / 48,
+                    ),
+                    Container(
+                      width: displayWidth / 6.4,
+                      height: displayWidth / 6.4,
+                      decoration: firsts[2],
+                      child: Text(first[2],
+                          style: TextStyle(
+                              color: Color.fromRGBO(215, 218, 220, 1),
+                              fontSize: 35)),
+                      alignment: Alignment(0.0, 0.0),
+                    ),
+                    SizedBox(
+                      width: displayWidth / 48,
+                    ),
+                    Container(
+                      width: displayWidth / 6.4,
+                      height: displayWidth / 6.4,
+                      decoration: firsts[3],
+                      child: Text(first[3],
+                          style: TextStyle(
+                              color: Color.fromRGBO(215, 218, 220, 1),
+                              fontSize: 35)),
+                      alignment: Alignment(0.0, 0.0),
+                    ),
+                    SizedBox(
+                      width: displayWidth / 48,
+                    ),
+                    Container(
+                      width: displayWidth / 6.4,
+                      height: displayWidth / 6.4,
+                      decoration: firsts[4],
+                      child: Text(first[4],
+                          style: TextStyle(
+                              color: Color.fromRGBO(215, 218, 220, 1),
+                              fontSize: 35)),
+                      alignment: Alignment(0.0, 0.0),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      width: displayWidth / 6.4,
+                      height: displayWidth / 6.4,
+                      decoration: seconds[0],
+                      child: Text(second[0],
+                          style: TextStyle(
+                              color: Color.fromRGBO(215, 218, 220, 1),
+                              fontSize: 35)),
+                      alignment: Alignment(0.0, 0.0),
+                    ),
+                    SizedBox(
+                      width: displayWidth / 48,
+                    ),
+                    Container(
+                      width: displayWidth / 6.4,
+                      height: displayWidth / 6.4,
+                      decoration: seconds[1],
+                      child: Text(second[1],
+                          style: TextStyle(
+                              color: Color.fromRGBO(215, 218, 220, 1),
+                              fontSize: 35)),
+                      alignment: Alignment(0.0, 0.0),
+                    ),
+                    SizedBox(
+                      width: displayWidth / 48,
+                    ),
+                    Container(
+                      width: displayWidth / 6.4,
+                      height: displayWidth / 6.4,
+                      decoration: seconds[2],
+                      child: Text(second[2],
+                          style: TextStyle(
+                              color: Color.fromRGBO(215, 218, 220, 1),
+                              fontSize: 35)),
+                      alignment: Alignment(0.0, 0.0),
+                    ),
+                    SizedBox(
+                      width: displayWidth / 48,
+                    ),
+                    Container(
+                      width: displayWidth / 6.4,
+                      height: displayWidth / 6.4,
+                      decoration: seconds[3],
+                      child: Text(second[3],
+                          style: TextStyle(
+                              color: Color.fromRGBO(215, 218, 220, 1),
+                              fontSize: 35)),
+                      alignment: Alignment(0.0, 0.0),
+                    ),
+                    SizedBox(
+                      width: displayWidth / 48,
+                    ),
+                    Container(
+                      width: displayWidth / 6.4,
+                      height: displayWidth / 6.4,
+                      decoration: seconds[4],
+                      child: Text(second[4],
+                          style: TextStyle(
+                              color: Color.fromRGBO(215, 218, 220, 1),
+                              fontSize: 35)),
+                      alignment: Alignment(0.0, 0.0),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      width: displayWidth / 6.4,
+                      height: displayWidth / 6.4,
+                      decoration: thirds[0],
+                      child: Text(third[0],
+                          style: TextStyle(
+                              color: Color.fromRGBO(215, 218, 220, 1),
+                              fontSize: 35)),
+                      alignment: Alignment(0.0, 0.0),
+                    ),
+                    SizedBox(
+                      width: displayWidth / 48,
+                    ),
+                    Container(
+                      width: displayWidth / 6.4,
+                      height: displayWidth / 6.4,
+                      decoration: thirds[1],
+                      child: Text(third[1],
+                          style: TextStyle(
+                              color: Color.fromRGBO(215, 218, 220, 1),
+                              fontSize: 35)),
+                      alignment: Alignment(0.0, 0.0),
+                    ),
+                    SizedBox(
+                      width: displayWidth / 48,
+                    ),
+                    Container(
+                      width: displayWidth / 6.4,
+                      height: displayWidth / 6.4,
+                      decoration: thirds[2],
+                      child: Text(third[2],
+                          style: TextStyle(
+                              color: Color.fromRGBO(215, 218, 220, 1),
+                              fontSize: 35)),
+                      alignment: Alignment(0.0, 0.0),
+                    ),
+                    SizedBox(
+                      width: displayWidth / 48,
+                    ),
+                    Container(
+                      width: displayWidth / 6.4,
+                      height: displayWidth / 6.4,
+                      decoration: thirds[3],
+                      child: Text(third[3],
+                          style: TextStyle(
+                              color: Color.fromRGBO(215, 218, 220, 1),
+                              fontSize: 35)),
+                      alignment: Alignment(0.0, 0.0),
+                    ),
+                    SizedBox(
+                      width: displayWidth / 48,
+                    ),
+                    Container(
+                      width: displayWidth / 6.4,
+                      height: displayWidth / 6.4,
+                      decoration: thirds[4],
+                      child: Text(third[4],
+                          style: TextStyle(
+                              color: Color.fromRGBO(215, 218, 220, 1),
+                              fontSize: 35)),
+                      alignment: Alignment(0.0, 0.0),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      width: displayWidth / 6.4,
+                      height: displayWidth / 6.4,
+                      decoration: fourths[0],
+                      child: Text(fourth[0],
+                          style: TextStyle(
+                              color: Color.fromRGBO(215, 218, 220, 1),
+                              fontSize: 35)),
+                      alignment: Alignment(0.0, 0.0),
+                    ),
+                    SizedBox(
+                      width: displayWidth / 48,
+                    ),
+                    Container(
+                      width: displayWidth / 6.4,
+                      height: displayWidth / 6.4,
+                      decoration: fourths[1],
+                      child: Text(fourth[1],
+                          style: TextStyle(
+                              color: Color.fromRGBO(215, 218, 220, 1),
+                              fontSize: 35)),
+                      alignment: Alignment(0.0, 0.0),
+                    ),
+                    SizedBox(
+                      width: displayWidth / 48,
+                    ),
+                    Container(
+                      width: displayWidth / 6.4,
+                      height: displayWidth / 6.4,
+                      decoration: fourths[2],
+                      child: Text(fourth[2],
+                          style: TextStyle(
+                              color: Color.fromRGBO(215, 218, 220, 1),
+                              fontSize: 35)),
+                      alignment: Alignment(0.0, 0.0),
+                    ),
+                    SizedBox(
+                      width: displayWidth / 48,
+                    ),
+                    Container(
+                      width: displayWidth / 6.4,
+                      height: displayWidth / 6.4,
+                      decoration: fourths[3],
+                      child: Text(fourth[3],
+                          style: TextStyle(
+                              color: Color.fromRGBO(215, 218, 220, 1),
+                              fontSize: 35)),
+                      alignment: Alignment(0.0, 0.0),
+                    ),
+                    SizedBox(
+                      width: displayWidth / 48,
+                    ),
+                    Container(
+                      width: displayWidth / 6.4,
+                      height: displayWidth / 6.4,
+                      decoration: fourths[4],
+                      child: Text(fourth[4],
+                          style: TextStyle(
+                              color: Color.fromRGBO(215, 218, 220, 1),
+                              fontSize: 35)),
+                      alignment: Alignment(0.0, 0.0),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      width: displayWidth / 6.4,
+                      height: displayWidth / 6.4,
+                      decoration: fifths[0],
+                      child: Text(fifth[0],
+                          style: TextStyle(
+                              color: Color.fromRGBO(215, 218, 220, 1),
+                              fontSize: 35)),
+                      alignment: Alignment(0.0, 0.0),
+                    ),
+                    SizedBox(
+                      width: displayWidth / 48,
+                    ),
+                    Container(
+                      width: displayWidth / 6.4,
+                      height: displayWidth / 6.4,
+                      decoration: fifths[1],
+                      child: Text(fifth[1],
+                          style: TextStyle(
+                              color: Color.fromRGBO(215, 218, 220, 1),
+                              fontSize: 35)),
+                      alignment: Alignment(0.0, 0.0),
+                    ),
+                    SizedBox(
+                      width: displayWidth / 48,
+                    ),
+                    Container(
+                      width: displayWidth / 6.4,
+                      height: displayWidth / 6.4,
+                      decoration: fifths[2],
+                      child: Text(fifth[2],
+                          style: TextStyle(
+                              color: Color.fromRGBO(215, 218, 220, 1),
+                              fontSize: 35)),
+                      alignment: Alignment(0.0, 0.0),
+                    ),
+                    SizedBox(
+                      width: displayWidth / 48,
+                    ),
+                    Container(
+                      width: displayWidth / 6.4,
+                      height: displayWidth / 6.4,
+                      decoration: fifths[3],
+                      child: Text(fifth[3],
+                          style: TextStyle(
+                              color: Color.fromRGBO(215, 218, 220, 1),
+                              fontSize: 35)),
+                      alignment: Alignment(0.0, 0.0),
+                    ),
+                    SizedBox(
+                      width: displayWidth / 48,
+                    ),
+                    Container(
+                      width: displayWidth / 6.4,
+                      height: displayWidth / 6.4,
+                      decoration: fifths[4],
+                      child: Text(fifth[4],
+                          style: TextStyle(
+                              color: Color.fromRGBO(215, 218, 220, 1),
+                              fontSize: 35)),
+                      alignment: Alignment(0.0, 0.0),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      width: displayWidth / 6.4,
+                      height: displayWidth / 6.4,
+                      decoration: sixths[0],
+                      child: Text(sixth[0],
+                          style: TextStyle(
+                              color: Color.fromRGBO(215, 218, 220, 1),
+                              fontSize: 35)),
+                      alignment: Alignment(0.0, 0.0),
+                    ),
+                    SizedBox(
+                      width: displayWidth / 48,
+                    ),
+                    Container(
+                      width: displayWidth / 6.4,
+                      height: displayWidth / 6.4,
+                      decoration: sixths[1],
+                      child: Text(sixth[1],
+                          style: TextStyle(
+                              color: Color.fromRGBO(215, 218, 220, 1),
+                              fontSize: 35)),
+                      alignment: Alignment(0.0, 0.0),
+                    ),
+                    SizedBox(
+                      width: displayWidth / 48,
+                    ),
+                    Container(
+                      width: displayWidth / 6.4,
+                      height: displayWidth / 6.4,
+                      decoration: sixths[2],
+                      child: Text(sixth[2],
+                          style: TextStyle(
+                              color: Color.fromRGBO(215, 218, 220, 1),
+                              fontSize: 35)),
+                      alignment: Alignment(0.0, 0.0),
+                    ),
+                    SizedBox(
+                      width: displayWidth / 48,
+                    ),
+                    Container(
+                      width: displayWidth / 6.4,
+                      height: displayWidth / 6.4,
+                      decoration: sixths[3],
+                      child: Text(sixth[3],
+                          style: TextStyle(
+                              color: Color.fromRGBO(215, 218, 220, 1),
+                              fontSize: 35)),
+                      alignment: Alignment(0.0, 0.0),
+                    ),
+                    SizedBox(
+                      width: displayWidth / 48,
+                    ),
+                    Container(
+                      width: displayWidth / 6.4,
+                      height: displayWidth / 6.4,
+                      decoration: sixths[4],
+                      child: Text(sixth[4],
+                          style: TextStyle(
+                              color: Color.fromRGBO(215, 218, 220, 1),
+                              fontSize: 35)),
+                      alignment: Alignment(0.0, 0.0),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+              ],
+            ))),
             Container(
               decoration: BoxDecoration(color: Color.fromRGBO(18, 18, 19, 1)),
               child: Column(
@@ -1318,447 +1525,662 @@ bool isWord (String wrd){
                     children: [
                       GestureDetector(
                         onTap: () {
-                          if(IsEnabled){
+                          if (IsEnabled) {
                             addLetter('E');
                           }
                         },
                         child: Container(
-                          width: displayWidth/11,
-                          height: displayWidth/8,
+                          width: displayWidth / 11,
+                          height: displayWidth / 8,
                           decoration: letters['E'],
-                          child: Center(child: Text('E',style: TextStyle(fontSize: displayWidth/25,color: Colors.white),textAlign: TextAlign.center,)),
+                          child: Center(
+                              child: Text(
+                            'E',
+                            style: TextStyle(
+                                fontSize: displayWidth / 25,
+                                color: Colors.white),
+                            textAlign: TextAlign.center,
+                          )),
                         ),
                       ),
                       GestureDetector(
                         onTap: () {
-                          if(IsEnabled){
+                          if (IsEnabled) {
                             addLetter('R');
                           }
                         },
                         child: Container(
-                          width: displayWidth/11,
-                          height: displayWidth/8,
+                          width: displayWidth / 11,
+                          height: displayWidth / 8,
                           decoration: letters['R'],
-                          child: Center(child: Text('R',style: TextStyle(fontSize: displayWidth/25,color: Colors.white),textAlign: TextAlign.center,)),
+                          child: Center(
+                              child: Text(
+                            'R',
+                            style: TextStyle(
+                                fontSize: displayWidth / 25,
+                                color: Colors.white),
+                            textAlign: TextAlign.center,
+                          )),
                         ),
                       ),
                       GestureDetector(
                         onTap: () {
-                          if(IsEnabled){
+                          if (IsEnabled) {
                             addLetter('T');
                           }
                         },
                         child: Container(
-                          width: displayWidth/11,
-                          height: displayWidth/8,
+                          width: displayWidth / 11,
+                          height: displayWidth / 8,
                           decoration: letters['T'],
-                          child: Center(child: Text('T',style: TextStyle(fontSize: displayWidth/25,color: Colors.white),textAlign: TextAlign.center,)),
+                          child: Center(
+                              child: Text(
+                            'T',
+                            style: TextStyle(
+                                fontSize: displayWidth / 25,
+                                color: Colors.white),
+                            textAlign: TextAlign.center,
+                          )),
                         ),
                       ),
                       GestureDetector(
                         onTap: () {
-                          if(IsEnabled){
+                          if (IsEnabled) {
                             addLetter('Y');
                           }
                         },
                         child: Container(
-                          width: displayWidth/11,
-                          height: displayWidth/8,
+                          width: displayWidth / 11,
+                          height: displayWidth / 8,
                           decoration: letters['Y'],
-                          child: Center(child: Text('Y',style: TextStyle(fontSize: displayWidth/25,color: Colors.white),textAlign: TextAlign.center,)),
+                          child: Center(
+                              child: Text(
+                            'Y',
+                            style: TextStyle(
+                                fontSize: displayWidth / 25,
+                                color: Colors.white),
+                            textAlign: TextAlign.center,
+                          )),
                         ),
                       ),
                       GestureDetector(
                         onTap: () {
-                          if(IsEnabled){
+                          if (IsEnabled) {
                             addLetter('U');
                           }
                         },
                         child: Container(
-                          width: displayWidth/11,
-                          height: displayWidth/8,
+                          width: displayWidth / 11,
+                          height: displayWidth / 8,
                           decoration: letters['U'],
-                          child: Center(child: Text('U',style: TextStyle(fontSize: displayWidth/25,color: Colors.white),textAlign: TextAlign.center,)),
+                          child: Center(
+                              child: Text(
+                            'U',
+                            style: TextStyle(
+                                fontSize: displayWidth / 25,
+                                color: Colors.white),
+                            textAlign: TextAlign.center,
+                          )),
                         ),
                       ),
                       GestureDetector(
                         onTap: () {
-                          if(IsEnabled){
+                          if (IsEnabled) {
                             addLetter('I');
                           }
                         },
                         child: Container(
-                          width: displayWidth/11,
-                          height: displayWidth/8,
+                          width: displayWidth / 11,
+                          height: displayWidth / 8,
                           decoration: letters['I'],
-                          child: Center(child: Text('I',style: TextStyle(fontSize: displayWidth/25,color: Colors.white),textAlign: TextAlign.center,)),
+                          child: Center(
+                              child: Text(
+                            'I',
+                            style: TextStyle(
+                                fontSize: displayWidth / 25,
+                                color: Colors.white),
+                            textAlign: TextAlign.center,
+                          )),
                         ),
                       ),
                       GestureDetector(
                         onTap: () {
-                          if(IsEnabled){
+                          if (IsEnabled) {
                             addLetter('O');
                           }
                         },
                         child: Container(
-                          width: displayWidth/11,
-                          height: displayWidth/8,
+                          width: displayWidth / 11,
+                          height: displayWidth / 8,
                           decoration: letters['O'],
-                          child: Center(child: Text('O',style: TextStyle(fontSize: displayWidth/25,color: Colors.white),textAlign: TextAlign.center,)),
+                          child: Center(
+                              child: Text(
+                            'O',
+                            style: TextStyle(
+                                fontSize: displayWidth / 25,
+                                color: Colors.white),
+                            textAlign: TextAlign.center,
+                          )),
                         ),
                       ),
                       GestureDetector(
                         onTap: () {
-                          if(IsEnabled){
+                          if (IsEnabled) {
                             addLetter('P');
                           }
                         },
                         child: Container(
-                          width: displayWidth/11,
-                          height: displayWidth/8,
+                          width: displayWidth / 11,
+                          height: displayWidth / 8,
                           decoration: letters['P'],
-                          child: Center(child: Text('P',style: TextStyle(fontSize: displayWidth/25,color: Colors.white),textAlign: TextAlign.center,)),
+                          child: Center(
+                              child: Text(
+                            'P',
+                            style: TextStyle(
+                                fontSize: displayWidth / 25,
+                                color: Colors.white),
+                            textAlign: TextAlign.center,
+                          )),
                         ),
                       ),
                       GestureDetector(
                         onTap: () {
-                          if(IsEnabled){
+                          if (IsEnabled) {
                             addLetter('Ğ');
                           }
                         },
                         child: Container(
-                          width: displayWidth/11,
-                          height: displayWidth/8,
+                          width: displayWidth / 11,
+                          height: displayWidth / 8,
                           decoration: letters['Ğ'],
-                          child: Center(child: Text('Ğ',style: TextStyle(fontSize: displayWidth/25,color: Colors.white),textAlign: TextAlign.center,)),
+                          child: Center(
+                              child: Text(
+                            'Ğ',
+                            style: TextStyle(
+                                fontSize: displayWidth / 25,
+                                color: Colors.white),
+                            textAlign: TextAlign.center,
+                          )),
                         ),
                       ),
                       GestureDetector(
                         onTap: () {
-                          if(IsEnabled){
+                          if (IsEnabled) {
                             addLetter('Ü');
                           }
                         },
                         child: Container(
-                          width: displayWidth/11,
-                          height: displayWidth/8,
+                          width: displayWidth / 11,
+                          height: displayWidth / 8,
                           decoration: letters['Ü'],
-                          child: Center(child: Text('Ü',style: TextStyle(fontSize: displayWidth/25,color: Colors.white),textAlign: TextAlign.center,)),
+                          child: Center(
+                              child: Text(
+                            'Ü',
+                            style: TextStyle(
+                                fontSize: displayWidth / 25,
+                                color: Colors.white),
+                            textAlign: TextAlign.center,
+                          )),
                         ),
                       ),
                     ],
                   ),
-                  SizedBox(height: 5,),
+                  SizedBox(
+                    height: 5,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      SizedBox(width: 5,),
+                      SizedBox(
+                        width: 5,
+                      ),
                       GestureDetector(
                         onTap: () {
-                          if(IsEnabled){
+                          if (IsEnabled) {
                             addLetter('A');
                           }
                         },
                         child: Container(
-                          width: displayWidth/13,
-                          height: displayWidth/8,
+                          width: displayWidth / 13,
+                          height: displayWidth / 8,
                           decoration: letters['A'],
-                          child: Center(child: Text('A',style: TextStyle(fontSize: displayWidth/25,color: Colors.white),textAlign: TextAlign.center,)),
+                          child: Center(
+                              child: Text(
+                            'A',
+                            style: TextStyle(
+                                fontSize: displayWidth / 25,
+                                color: Colors.white),
+                            textAlign: TextAlign.center,
+                          )),
                         ),
                       ),
                       GestureDetector(
                         onTap: () {
-                          if(IsEnabled){
+                          if (IsEnabled) {
                             addLetter('S');
                           }
                         },
                         child: Container(
-                          width: displayWidth/13,
-                          height: displayWidth/8,
+                          width: displayWidth / 13,
+                          height: displayWidth / 8,
                           decoration: letters['S'],
-                          child: Center(child: Text('S',style: TextStyle(fontSize: displayWidth/25,color: Colors.white),textAlign: TextAlign.center,)),
+                          child: Center(
+                              child: Text(
+                            'S',
+                            style: TextStyle(
+                                fontSize: displayWidth / 25,
+                                color: Colors.white),
+                            textAlign: TextAlign.center,
+                          )),
                         ),
                       ),
                       GestureDetector(
                         onTap: () {
-                          if(IsEnabled){
+                          if (IsEnabled) {
                             addLetter('D');
                           }
                         },
                         child: Container(
-                          width: displayWidth/13,
-                          height: displayWidth/8,
+                          width: displayWidth / 13,
+                          height: displayWidth / 8,
                           decoration: letters['D'],
-                          child: Center(child: Text('D',style: TextStyle(fontSize: displayWidth/25,color: Colors.white),textAlign: TextAlign.center,)),
+                          child: Center(
+                              child: Text(
+                            'D',
+                            style: TextStyle(
+                                fontSize: displayWidth / 25,
+                                color: Colors.white),
+                            textAlign: TextAlign.center,
+                          )),
                         ),
                       ),
                       GestureDetector(
                         onTap: () {
-                          if(IsEnabled){
+                          if (IsEnabled) {
                             addLetter('F');
                           }
                         },
                         child: Container(
-                          width: displayWidth/13,
-                          height: displayWidth/8,
+                          width: displayWidth / 13,
+                          height: displayWidth / 8,
                           decoration: letters['F'],
-                          child: Center(child: Text('F',style: TextStyle(fontSize: displayWidth/25,color: Colors.white),textAlign: TextAlign.center,)),
+                          child: Center(
+                              child: Text(
+                            'F',
+                            style: TextStyle(
+                                fontSize: displayWidth / 25,
+                                color: Colors.white),
+                            textAlign: TextAlign.center,
+                          )),
                         ),
                       ),
                       GestureDetector(
                         onTap: () {
-                          if(IsEnabled){
+                          if (IsEnabled) {
                             addLetter('G');
                           }
                         },
                         child: Container(
-                          width: displayWidth/13,
-                          height: displayWidth/8,
+                          width: displayWidth / 13,
+                          height: displayWidth / 8,
                           decoration: letters['G'],
-                          child: Center(child: Text('G',style: TextStyle(fontSize: displayWidth/25,color: Colors.white),textAlign: TextAlign.center,)),
+                          child: Center(
+                              child: Text(
+                            'G',
+                            style: TextStyle(
+                                fontSize: displayWidth / 25,
+                                color: Colors.white),
+                            textAlign: TextAlign.center,
+                          )),
                         ),
                       ),
                       GestureDetector(
                         onTap: () {
-                          if(IsEnabled){
+                          if (IsEnabled) {
                             addLetter('H');
                           }
                         },
                         child: Container(
-                          width: displayWidth/13,
-                          height: displayWidth/8,
+                          width: displayWidth / 13,
+                          height: displayWidth / 8,
                           decoration: letters['H'],
-                          child: Center(child: Text('H',style: TextStyle(fontSize: displayWidth/25,color: Colors.white),textAlign: TextAlign.center,)),
+                          child: Center(
+                              child: Text(
+                            'H',
+                            style: TextStyle(
+                                fontSize: displayWidth / 25,
+                                color: Colors.white),
+                            textAlign: TextAlign.center,
+                          )),
                         ),
                       ),
                       GestureDetector(
                         onTap: () {
-                          if(IsEnabled){
+                          if (IsEnabled) {
                             addLetter('J');
                           }
                         },
                         child: Container(
-                          width: displayWidth/13,
-                          height: displayWidth/8,
+                          width: displayWidth / 13,
+                          height: displayWidth / 8,
                           decoration: letters['J'],
-                          child: Center(child: Text('J',style: TextStyle(fontSize: displayWidth/25,color: Colors.white),textAlign: TextAlign.center,)),
+                          child: Center(
+                              child: Text(
+                            'J',
+                            style: TextStyle(
+                                fontSize: displayWidth / 25,
+                                color: Colors.white),
+                            textAlign: TextAlign.center,
+                          )),
                         ),
                       ),
                       GestureDetector(
                         onTap: () {
-                          if(IsEnabled){
+                          if (IsEnabled) {
                             addLetter('K');
                           }
                         },
                         child: Container(
-                          width: displayWidth/13,
-                          height: displayWidth/8,
+                          width: displayWidth / 13,
+                          height: displayWidth / 8,
                           decoration: letters['K'],
-                          child: Center(child: Text('K',style: TextStyle(fontSize: displayWidth/25,color: Colors.white),textAlign: TextAlign.center,)),
+                          child: Center(
+                              child: Text(
+                            'K',
+                            style: TextStyle(
+                                fontSize: displayWidth / 25,
+                                color: Colors.white),
+                            textAlign: TextAlign.center,
+                          )),
                         ),
                       ),
                       GestureDetector(
                         onTap: () {
-                          if(IsEnabled){
+                          if (IsEnabled) {
                             addLetter('L');
                           }
                         },
                         child: Container(
-                          width: displayWidth/13,
-                          height: displayWidth/8,
+                          width: displayWidth / 13,
+                          height: displayWidth / 8,
                           decoration: letters['L'],
-                          child: Center(child: Text('L',style: TextStyle(fontSize: displayWidth/25,color: Colors.white),textAlign: TextAlign.center,)),
+                          child: Center(
+                              child: Text(
+                            'L',
+                            style: TextStyle(
+                                fontSize: displayWidth / 25,
+                                color: Colors.white),
+                            textAlign: TextAlign.center,
+                          )),
                         ),
                       ),
                       GestureDetector(
                         onTap: () {
-                          if(IsEnabled){
+                          if (IsEnabled) {
                             addLetter('Ş');
                           }
                         },
                         child: Container(
-                          width: displayWidth/13,
-                          height: displayWidth/8,
+                          width: displayWidth / 13,
+                          height: displayWidth / 8,
                           decoration: letters['Ş'],
-                          child: Center(child: Text('Ş',style: TextStyle(fontSize: displayWidth/25,color: Colors.white),textAlign: TextAlign.center,)),
+                          child: Center(
+                              child: Text(
+                            'Ş',
+                            style: TextStyle(
+                                fontSize: displayWidth / 25,
+                                color: Colors.white),
+                            textAlign: TextAlign.center,
+                          )),
                         ),
                       ),
                       GestureDetector(
                         onTap: () {
-                          if(IsEnabled){
+                          if (IsEnabled) {
                             addLetter('İ');
                           }
                         },
                         child: Container(
-                          width: displayWidth/13,
-                          height: displayWidth/8,
+                          width: displayWidth / 13,
+                          height: displayWidth / 8,
                           decoration: letters['İ'],
-                          child: Center(child: Text('İ',style: TextStyle(fontSize: displayWidth/25,color: Colors.white),textAlign: TextAlign.center,)),
+                          child: Center(
+                              child: Text(
+                            'İ',
+                            style: TextStyle(
+                                fontSize: displayWidth / 25,
+                                color: Colors.white),
+                            textAlign: TextAlign.center,
+                          )),
                         ),
                       ),
-                      SizedBox(width: 5,),
+                      SizedBox(
+                        width: 5,
+                      ),
                     ],
                   ),
-                  SizedBox(height: 5,),
+                  SizedBox(
+                    height: 5,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       GestureDetector(
                         child: Container(
-                          width: displayWidth/8,
-                          height: displayWidth/8,
+                          width: displayWidth / 8,
+                          height: displayWidth / 8,
                           decoration: BoxDecoration(
-                              color: Color.fromRGBO(129, 131, 132,1),
-                              borderRadius: BorderRadius.all(Radius.circular(5))
-                          ),
-                          child: Center(child: Icon(Icons.keyboard_return,color: Colors.white,)),
+                              color: Color.fromRGBO(129, 131, 132, 1),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(5))),
+                          child: Center(
+                              child: Icon(
+                            Icons.keyboard_return,
+                            color: Colors.white,
+                          )),
                         ),
-                        onTap: (){
-                          if(isFirst==false && !first.contains(' ')){
+                        onTap: () {
+                          if (isFirst == false && !first.contains(' ')) {
                             AddItem(first);
-                          }
-                          else if(isSecond==false && !second.contains(' ')){
+                          } else if (isSecond == false &&
+                              !second.contains(' ')) {
                             AddItem(second);
-                          }
-                          else if(isThird==false && !third.contains(' ')){
+                          } else if (isThird == false && !third.contains(' ')) {
                             AddItem(third);
-                          }
-                          else if(isFourth==false && !fourth.contains(' ')){
+                          } else if (isFourth == false &&
+                              !fourth.contains(' ')) {
                             AddItem(fourth);
-                          }
-                          else if(isFifth==false && !fifth.contains(' ')){
+                          } else if (isFifth == false && !fifth.contains(' ')) {
                             AddItem(fifth);
-                          }
-                          else if(isSixth==false && !sixth.contains(' ')){
+                          } else if (isSixth == false && !sixth.contains(' ')) {
                             AddItem(sixth);
                           }
                         },
                       ),
                       GestureDetector(
                         onTap: () {
-                          if(IsEnabled){
+                          if (IsEnabled) {
                             addLetter('Z');
                           }
                         },
                         child: Container(
-                          width: displayWidth/13,
-                          height: displayWidth/8,
+                          width: displayWidth / 13,
+                          height: displayWidth / 8,
                           decoration: letters['Z'],
-                          child: Center(child: Text('Z',style: TextStyle(fontSize: displayWidth/25,color: Colors.white),textAlign: TextAlign.center,)),
+                          child: Center(
+                              child: Text(
+                            'Z',
+                            style: TextStyle(
+                                fontSize: displayWidth / 25,
+                                color: Colors.white),
+                            textAlign: TextAlign.center,
+                          )),
                         ),
                       ),
                       GestureDetector(
                         onTap: () {
-                          if(IsEnabled){
+                          if (IsEnabled) {
                             addLetter('C');
                           }
                         },
                         child: Container(
-                          width: displayWidth/13,
-                          height: displayWidth/8,
+                          width: displayWidth / 13,
+                          height: displayWidth / 8,
                           decoration: letters['C'],
-                          child: Center(child: Text('C',style: TextStyle(fontSize: displayWidth/25,color: Colors.white),textAlign: TextAlign.center,)),
+                          child: Center(
+                              child: Text(
+                            'C',
+                            style: TextStyle(
+                                fontSize: displayWidth / 25,
+                                color: Colors.white),
+                            textAlign: TextAlign.center,
+                          )),
                         ),
                       ),
                       GestureDetector(
                         onTap: () {
-                          if(IsEnabled){
+                          if (IsEnabled) {
                             addLetter('V');
                           }
                         },
                         child: Container(
-                          width: displayWidth/13,
-                          height: displayWidth/8,
+                          width: displayWidth / 13,
+                          height: displayWidth / 8,
                           decoration: letters['V'],
-                          child: Center(child: Text('V',style: TextStyle(fontSize: displayWidth/25,color: Colors.white),textAlign: TextAlign.center,)),
+                          child: Center(
+                              child: Text(
+                            'V',
+                            style: TextStyle(
+                                fontSize: displayWidth / 25,
+                                color: Colors.white),
+                            textAlign: TextAlign.center,
+                          )),
                         ),
                       ),
                       GestureDetector(
                         onTap: () {
-                          if(IsEnabled){
+                          if (IsEnabled) {
                             addLetter('B');
                           }
                         },
                         child: Container(
-                          width: displayWidth/13,
-                          height: displayWidth/8,
+                          width: displayWidth / 13,
+                          height: displayWidth / 8,
                           decoration: letters['B'],
-                          child: Center(child: Text('B',style: TextStyle(fontSize: displayWidth/25,color: Colors.white),textAlign: TextAlign.center,)),
+                          child: Center(
+                              child: Text(
+                            'B',
+                            style: TextStyle(
+                                fontSize: displayWidth / 25,
+                                color: Colors.white),
+                            textAlign: TextAlign.center,
+                          )),
                         ),
                       ),
                       GestureDetector(
                         onTap: () {
-                          if(IsEnabled){
+                          if (IsEnabled) {
                             addLetter('N');
                           }
                         },
                         child: Container(
-                          width: displayWidth/13,
-                          height: displayWidth/8,
+                          width: displayWidth / 13,
+                          height: displayWidth / 8,
                           decoration: letters['N'],
-                          child: Center(child: Text('N',style: TextStyle(fontSize: displayWidth/25,color: Colors.white),textAlign: TextAlign.center,)),
+                          child: Center(
+                              child: Text(
+                            'N',
+                            style: TextStyle(
+                                fontSize: displayWidth / 25,
+                                color: Colors.white),
+                            textAlign: TextAlign.center,
+                          )),
                         ),
                       ),
                       GestureDetector(
                         onTap: () {
-                          if(IsEnabled){
+                          if (IsEnabled) {
                             addLetter('M');
                           }
                         },
                         child: Container(
-                          width: displayWidth/13,
-                          height: displayWidth/8,
+                          width: displayWidth / 13,
+                          height: displayWidth / 8,
                           decoration: letters['M'],
-                          child: Center(child: Text('M',style: TextStyle(fontSize: displayWidth/25,color: Colors.white),textAlign: TextAlign.center,)),
+                          child: Center(
+                              child: Text(
+                            'M',
+                            style: TextStyle(
+                                fontSize: displayWidth / 25,
+                                color: Colors.white),
+                            textAlign: TextAlign.center,
+                          )),
                         ),
                       ),
                       GestureDetector(
                         onTap: () {
-                          if(IsEnabled){
+                          if (IsEnabled) {
                             addLetter('Ö');
                           }
                         },
                         child: Container(
-                          width: displayWidth/13,
-                          height: displayWidth/8,
+                          width: displayWidth / 13,
+                          height: displayWidth / 8,
                           decoration: letters['Ö'],
-                          child: Center(child: Text('Ö',style: TextStyle(fontSize: displayWidth/25,color: Colors.white),textAlign: TextAlign.center,)),
+                          child: Center(
+                              child: Text(
+                            'Ö',
+                            style: TextStyle(
+                                fontSize: displayWidth / 25,
+                                color: Colors.white),
+                            textAlign: TextAlign.center,
+                          )),
                         ),
                       ),
                       GestureDetector(
                         onTap: () {
-                          if(IsEnabled){
+                          if (IsEnabled) {
                             addLetter('Ç');
                           }
                         },
                         child: Container(
-                          width: displayWidth/13,
-                          height: displayWidth/8,
+                          width: displayWidth / 13,
+                          height: displayWidth / 8,
                           decoration: letters['Ç'],
-                          child: Center(child: Text('Ç',style: TextStyle(fontSize: displayWidth/25,color: Colors.white),textAlign: TextAlign.center,)),
+                          child: Center(
+                              child: Text(
+                            'Ç',
+                            style: TextStyle(
+                                fontSize: displayWidth / 25,
+                                color: Colors.white),
+                            textAlign: TextAlign.center,
+                          )),
                         ),
                       ),
                       GestureDetector(
-                        onTap: (){
+                        onTap: () {
                           removeLetter();
                         },
                         child: Container(
-                          width: displayWidth/8,
-                          height: displayWidth/8,
+                          width: displayWidth / 8,
+                          height: displayWidth / 8,
                           decoration: BoxDecoration(
-                              color: Color.fromRGBO(129, 131, 132,1),
-                              borderRadius: BorderRadius.all(Radius.circular(5))
-                          ),
-                          child: Center(child: Icon(Icons.backspace_outlined,color: Colors.white,)),
+                              color: Color.fromRGBO(129, 131, 132, 1),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(5))),
+                          child: Center(
+                              child: Icon(
+                            Icons.backspace_outlined,
+                            color: Colors.white,
+                          )),
                         ),
                       ),
                     ],
                   ),
-
                   SizedBox(height: 30)
-              ],),
+                ],
+              ),
             ),
-
           ]),
         ));
   }

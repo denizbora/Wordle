@@ -156,6 +156,7 @@ class _MyHomePageState extends State<MyHomePage> {
   bool pointAdded = false;
   int point = 0;
   int streak = 0;
+  bool isVibrate = true;
   @override
   void initState() {
     setState(() {
@@ -513,7 +514,10 @@ class _MyHomePageState extends State<MyHomePage> {
     final prefs = await SharedPreferences.getInstance();
     prefs.setBool("isNew", false);
   }
-
+  Future<void> setVibrate() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setBool("isVibrate", isVibrate);
+  }
   bool isWord(String wrd) {
     for (String element in words) {
       if (element == wrd) {
@@ -872,6 +876,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Future<void> getPreferances() async {
     final prefs = await SharedPreferences.getInstance();
     isNew = prefs.getBool("isNew") ?? true;
+    isVibrate = prefs.getBool("isVibrate")??true;
     _showDialog();
     day = prefs.getString('day') ??
         DateFormat('yyyy-MM-dd')
@@ -1520,6 +1525,23 @@ class _MyHomePageState extends State<MyHomePage> {
               decoration: BoxDecoration(color: Color.fromRGBO(18, 18, 19, 1)),
               child: Column(
                 children: [
+                  Center(
+                    child: GestureDetector(
+                      onTap: (){
+                        if(isVibrate && IsEnabled){
+                          HapticFeedback.mediumImpact();
+                        }
+                        setState(() {
+                          isVibrate=!isVibrate;
+                        });
+                        setVibrate();
+                      },
+                        child: Container(
+                          child: Icon(
+                            Icons.vibration,color: Colors.white,),
+                          decoration: isVibrate?grayLet:blackLet,width: displayWidth/12,height: displayWidth/12,)),
+                  ),
+                  SizedBox(height: 20),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -1527,6 +1549,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         onTap: () {
                           if (IsEnabled) {
                             addLetter('E');
+                          }
+                          if(isVibrate && IsEnabled){
+                            HapticFeedback.mediumImpact();
                           }
                         },
                         child: Container(
@@ -1548,6 +1573,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           if (IsEnabled) {
                             addLetter('R');
                           }
+                          if(isVibrate && IsEnabled){
+                            HapticFeedback.mediumImpact();
+                          }
                         },
                         child: Container(
                           width: displayWidth / 11,
@@ -1567,6 +1595,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         onTap: () {
                           if (IsEnabled) {
                             addLetter('T');
+                          }
+                          if(isVibrate && IsEnabled){
+                            HapticFeedback.mediumImpact();
                           }
                         },
                         child: Container(
@@ -1588,6 +1619,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           if (IsEnabled) {
                             addLetter('Y');
                           }
+                          if(isVibrate && IsEnabled){
+                            HapticFeedback.mediumImpact();
+                          }
                         },
                         child: Container(
                           width: displayWidth / 11,
@@ -1607,6 +1641,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         onTap: () {
                           if (IsEnabled) {
                             addLetter('U');
+                          }
+                          if(isVibrate && IsEnabled){
+                            HapticFeedback.mediumImpact();
                           }
                         },
                         child: Container(
@@ -1628,6 +1665,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           if (IsEnabled) {
                             addLetter('I');
                           }
+                          if(isVibrate && IsEnabled){
+                            HapticFeedback.mediumImpact();
+                          }
                         },
                         child: Container(
                           width: displayWidth / 11,
@@ -1647,6 +1687,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         onTap: () {
                           if (IsEnabled) {
                             addLetter('O');
+                          }
+                          if(isVibrate && IsEnabled){
+                            HapticFeedback.mediumImpact();
                           }
                         },
                         child: Container(
@@ -1668,6 +1711,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           if (IsEnabled) {
                             addLetter('P');
                           }
+                          if(isVibrate && IsEnabled){
+                            HapticFeedback.mediumImpact();
+                          }
                         },
                         child: Container(
                           width: displayWidth / 11,
@@ -1688,6 +1734,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           if (IsEnabled) {
                             addLetter('Ğ');
                           }
+                          if(isVibrate && IsEnabled){
+                            HapticFeedback.mediumImpact();
+                          }
                         },
                         child: Container(
                           width: displayWidth / 11,
@@ -1707,6 +1756,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         onTap: () {
                           if (IsEnabled) {
                             addLetter('Ü');
+                          }
+                          if(isVibrate && IsEnabled){
+                            HapticFeedback.mediumImpact();
                           }
                         },
                         child: Container(
@@ -1739,6 +1791,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           if (IsEnabled) {
                             addLetter('A');
                           }
+                          if(isVibrate && IsEnabled){
+                            HapticFeedback.mediumImpact();
+                          }
                         },
                         child: Container(
                           width: displayWidth / 13,
@@ -1758,6 +1813,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         onTap: () {
                           if (IsEnabled) {
                             addLetter('S');
+                          }
+                          if(isVibrate && IsEnabled){
+                            HapticFeedback.mediumImpact();
                           }
                         },
                         child: Container(
@@ -1779,6 +1837,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           if (IsEnabled) {
                             addLetter('D');
                           }
+                          if(isVibrate && IsEnabled){
+                            HapticFeedback.mediumImpact();
+                          }
                         },
                         child: Container(
                           width: displayWidth / 13,
@@ -1798,6 +1859,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         onTap: () {
                           if (IsEnabled) {
                             addLetter('F');
+                          }
+                          if(isVibrate && IsEnabled){
+                            HapticFeedback.mediumImpact();
                           }
                         },
                         child: Container(
@@ -1819,6 +1883,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           if (IsEnabled) {
                             addLetter('G');
                           }
+                          if(isVibrate && IsEnabled){
+                            HapticFeedback.mediumImpact();
+                          }
                         },
                         child: Container(
                           width: displayWidth / 13,
@@ -1838,6 +1905,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         onTap: () {
                           if (IsEnabled) {
                             addLetter('H');
+                          }
+                          if(isVibrate && IsEnabled){
+                            HapticFeedback.mediumImpact();
                           }
                         },
                         child: Container(
@@ -1859,6 +1929,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           if (IsEnabled) {
                             addLetter('J');
                           }
+                          if(isVibrate && IsEnabled){
+                            HapticFeedback.mediumImpact();
+                          }
                         },
                         child: Container(
                           width: displayWidth / 13,
@@ -1878,6 +1951,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         onTap: () {
                           if (IsEnabled) {
                             addLetter('K');
+                          }
+                          if(isVibrate && IsEnabled){
+                            HapticFeedback.mediumImpact();
                           }
                         },
                         child: Container(
@@ -1899,6 +1975,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           if (IsEnabled) {
                             addLetter('L');
                           }
+                          if(isVibrate && IsEnabled){
+                            HapticFeedback.mediumImpact();
+                          }
                         },
                         child: Container(
                           width: displayWidth / 13,
@@ -1919,6 +1998,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           if (IsEnabled) {
                             addLetter('Ş');
                           }
+                          if(isVibrate && IsEnabled){
+                            HapticFeedback.mediumImpact();
+                          }
                         },
                         child: Container(
                           width: displayWidth / 13,
@@ -1938,6 +2020,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         onTap: () {
                           if (IsEnabled) {
                             addLetter('İ');
+                          }
+                          if(isVibrate && IsEnabled){
+                            HapticFeedback.mediumImpact();
                           }
                         },
                         child: Container(
@@ -1980,6 +2065,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           )),
                         ),
                         onTap: () {
+                          if(isVibrate && IsEnabled){
+                            HapticFeedback.mediumImpact();
+                          }
                           if (isFirst == false && !first.contains(' ')) {
                             AddItem(first);
                           } else if (isSecond == false &&
@@ -2002,6 +2090,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           if (IsEnabled) {
                             addLetter('Z');
                           }
+                          if(isVibrate && IsEnabled){
+                            HapticFeedback.mediumImpact();
+                          }
                         },
                         child: Container(
                           width: displayWidth / 13,
@@ -2021,6 +2112,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         onTap: () {
                           if (IsEnabled) {
                             addLetter('C');
+                          }
+                          if(isVibrate && IsEnabled){
+                            HapticFeedback.mediumImpact();
                           }
                         },
                         child: Container(
@@ -2042,6 +2136,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           if (IsEnabled) {
                             addLetter('V');
                           }
+                          if(isVibrate && IsEnabled){
+                            HapticFeedback.mediumImpact();
+                          }
                         },
                         child: Container(
                           width: displayWidth / 13,
@@ -2061,6 +2158,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         onTap: () {
                           if (IsEnabled) {
                             addLetter('B');
+                          }
+                          if(isVibrate && IsEnabled){
+                            HapticFeedback.mediumImpact();
                           }
                         },
                         child: Container(
@@ -2082,6 +2182,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           if (IsEnabled) {
                             addLetter('N');
                           }
+                          if(isVibrate && IsEnabled){
+                            HapticFeedback.mediumImpact();
+                          }
                         },
                         child: Container(
                           width: displayWidth / 13,
@@ -2101,6 +2204,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         onTap: () {
                           if (IsEnabled) {
                             addLetter('M');
+                          }
+                          if(isVibrate && IsEnabled){
+                            HapticFeedback.mediumImpact();
                           }
                         },
                         child: Container(
@@ -2122,6 +2228,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           if (IsEnabled) {
                             addLetter('Ö');
                           }
+                          if(isVibrate && IsEnabled){
+                            HapticFeedback.mediumImpact();
+                          }
                         },
                         child: Container(
                           width: displayWidth / 13,
@@ -2142,6 +2251,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           if (IsEnabled) {
                             addLetter('Ç');
                           }
+                          if(isVibrate && IsEnabled){
+                            HapticFeedback.mediumImpact();
+                          }
                         },
                         child: Container(
                           width: displayWidth / 13,
@@ -2159,6 +2271,9 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       GestureDetector(
                         onTap: () {
+                          if(isVibrate && IsEnabled){
+                            HapticFeedback.mediumImpact();
+                          }
                           removeLetter();
                         },
                         child: Container(
@@ -2185,7 +2300,6 @@ class _MyHomePageState extends State<MyHomePage> {
         ));
   }
 }
-
 class UpperCaseTextFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(

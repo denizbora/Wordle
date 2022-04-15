@@ -8,6 +8,7 @@ import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:turkish/turkish.dart';
+import 'package:wordle/main.dart';
 
 void main() {
   runApp(const MyApp());
@@ -94,7 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
   bool isFifth=false;
   bool isSixth=false;
   bool IsEnabled = true;
-
+  bool isNew = true;
   @override
   void initState() {
     setState(() {
@@ -104,6 +105,270 @@ class _MyHomePageState extends State<MyHomePage> {
       words = wordlist;
       getPreferances();
     });
+  }
+  _showDialog() async {
+    await Future.delayed(Duration(milliseconds: 50));
+    var  displayWidth = MediaQuery.of(context).size.width;
+    var  displayHeight = MediaQuery.of(context).size.height;
+    if(isNew){
+    showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        backgroundColor: Color.fromRGBO(18, 18, 19,1),
+        content: Container(width: displayWidth*0.8,
+          height: displayHeight*0.72,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text("WORDLE'i 6 denemede bulun.",style: TextStyle(color: Colors.white),),
+                ],
+              ),
+              SizedBox(height: 15,),
+              Text("Her tahmin 5 harfli doğru bir kelime olmalıdır. Göndermek için enter'a basın.",style: TextStyle(color: Colors.white),),
+              SizedBox(height: 15,),
+              Text("Her tahminden sonra kutucukların renkleri tahmininizin yakınlığına göre değişecektir.",style: TextStyle(color: Colors.white),),
+              SizedBox(height: 15,),
+              Container(width: displayWidth*0.8,height: 2,color: Color.fromRGBO(58, 58, 60,1),),
+              SizedBox(height: 15,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text("Örnekler", style: TextStyle(color: Colors.white,fontSize: 30,),textAlign: TextAlign.left,),
+                ],
+              ),
+              SizedBox(height: 15,),
+              Row(
+                children: [
+                  Container(
+                    width: displayWidth / 8,
+                    height: displayWidth / 8,
+                    decoration: greenDec,
+                    child: Text("D",
+                        style: TextStyle(
+                            color: Color.fromRGBO(215, 218, 220, 1),
+                            fontSize: 35)),
+                    alignment: Alignment(0.0, 0.0),
+                  ),
+                  SizedBox(width: 5,),
+                  Container(
+                    width: displayWidth / 8,
+                    height: displayWidth / 8,
+                    decoration: blackDec,
+                    child: Text("E",
+                        style: TextStyle(
+                            color: Color.fromRGBO(215, 218, 220, 1),
+                            fontSize: 35)),
+                    alignment: Alignment(0.0, 0.0),
+                  ),
+                  SizedBox(width: 5,),
+                  Container(
+                    width: displayWidth / 8,
+                    height: displayWidth / 8,
+                    decoration: blackDec,
+                    child: Text("N",
+                        style: TextStyle(
+                            color: Color.fromRGBO(215, 218, 220, 1),
+                            fontSize: 35)),
+                    alignment: Alignment(0.0, 0.0),
+                  ),
+                  SizedBox(width: 5,),
+                  Container(
+                    width: displayWidth / 8,
+                    height: displayWidth / 8,
+                    decoration: blackDec,
+                    child: Text("İ",
+                        style: TextStyle(
+                            color: Color.fromRGBO(215, 218, 220, 1),
+                            fontSize: 35)),
+                    alignment: Alignment(0.0, 0.0),
+                  ),
+                  SizedBox(width: 5,),
+                  Container(
+                    width: displayWidth / 8,
+                    height: displayWidth / 8,
+                    decoration: blackDec,
+                    child: Text("Z",
+                        style: TextStyle(
+                            color: Color.fromRGBO(215, 218, 220, 1),
+                            fontSize: 35)),
+                    alignment: Alignment(0.0, 0.0),
+                  ),
+                ],
+              ),
+              SizedBox(height: 15,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text("D harfi kelimede var ve doğru yerde.",style: TextStyle(color: Colors.white),),
+                ],
+              ),
+              SizedBox(height: 15,),
+              Row(
+                children: [
+                  Container(
+                    width: displayWidth / 8,
+                    height: displayWidth / 8,
+                    decoration: blackDec,
+                    child: Text("R",
+                        style: TextStyle(
+                            color: Color.fromRGBO(215, 218, 220, 1),
+                            fontSize: 35)),
+                    alignment: Alignment(0.0, 0.0),
+                  ),
+                  SizedBox(width: 5,),
+                  Container(
+                    width: displayWidth / 8,
+                    height: displayWidth / 8,
+                    decoration: yellowDec,
+                    child: Text("A",
+                        style: TextStyle(
+                            color: Color.fromRGBO(215, 218, 220, 1),
+                            fontSize: 35)),
+                    alignment: Alignment(0.0, 0.0),
+                  ),
+                  SizedBox(width: 5,),
+                  Container(
+                    width: displayWidth / 8,
+                    height: displayWidth / 8,
+                    decoration: blackDec,
+                    child: Text("K",
+                        style: TextStyle(
+                            color: Color.fromRGBO(215, 218, 220, 1),
+                            fontSize: 35)),
+                    alignment: Alignment(0.0, 0.0),
+                  ),
+                  SizedBox(width: 5,),
+                  Container(
+                    width: displayWidth / 8,
+                    height: displayWidth / 8,
+                    decoration: blackDec,
+                    child: Text("E",
+                        style: TextStyle(
+                            color: Color.fromRGBO(215, 218, 220, 1),
+                            fontSize: 35)),
+                    alignment: Alignment(0.0, 0.0),
+                  ),
+                  SizedBox(width: 5,),
+                  Container(
+                    width: displayWidth / 8,
+                    height: displayWidth / 8,
+                    decoration: blackDec,
+                    child: Text("T",
+                        style: TextStyle(
+                            color: Color.fromRGBO(215, 218, 220, 1),
+                            fontSize: 35)),
+                    alignment: Alignment(0.0, 0.0),
+                  ),
+                ],
+              ),
+              SizedBox(height: 15,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text("A harfi kelimede var fakat yanlış yerde.",style: TextStyle(color: Colors.white),),
+                ],
+              ),
+              SizedBox(height: 15,),
+              Row(
+                children: [
+                  Container(
+                    width: displayWidth / 8,
+                    height: displayWidth / 8,
+                    decoration: blackDec,
+                    child: Text("T",
+                        style: TextStyle(
+                            color: Color.fromRGBO(215, 218, 220, 1),
+                            fontSize: 35)),
+                    alignment: Alignment(0.0, 0.0),
+                  ),
+                  SizedBox(width: 5,),
+                  Container(
+                    width: displayWidth / 8,
+                    height: displayWidth / 8,
+                    decoration: blackDec,
+                    child: Text("A",
+                        style: TextStyle(
+                            color: Color.fromRGBO(215, 218, 220, 1),
+                            fontSize: 35)),
+                    alignment: Alignment(0.0, 0.0),
+                  ),
+                  SizedBox(width: 5,),
+                  Container(
+                    width: displayWidth / 8,
+                    height: displayWidth / 8,
+                    decoration: blackDec,
+                    child: Text("R",
+                        style: TextStyle(
+                            color: Color.fromRGBO(215, 218, 220, 1),
+                            fontSize: 35)),
+                    alignment: Alignment(0.0, 0.0),
+                  ),
+                  SizedBox(width: 5,),
+                  Container(
+                    width: displayWidth / 8,
+                    height: displayWidth / 8,
+                    decoration: blackDec,
+                    child: Text("E",
+                        style: TextStyle(
+                            color: Color.fromRGBO(215, 218, 220, 1),
+                            fontSize: 35)),
+                    alignment: Alignment(0.0, 0.0),
+                  ),
+                  SizedBox(width: 5,),
+                  Container(
+                    width: displayWidth / 8,
+                    height: displayWidth / 8,
+                    decoration: grayDec,
+                    child: Text("T",
+                        style: TextStyle(
+                            color: Color.fromRGBO(215, 218, 220, 1),
+                            fontSize: 35)),
+                    alignment: Alignment(0.0, 0.0),
+                  ),
+                ],
+              ),
+              SizedBox(height: 15,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text("T harfi kelimede yok.",style: TextStyle(color: Colors.white),),
+                ],
+              ),
+              SizedBox(height: 15,),
+              Container(width: displayWidth*0.8,height: 2,color: Color.fromRGBO(58, 58, 60,1),),
+              SizedBox(height: 15,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text("Her gün yeni bir WORDLE gelir!",style: TextStyle(color: Colors.white),),
+                ],
+              ),
+
+
+
+
+
+            ],
+          ),
+        ),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              saveNew();
+              Navigator.of(context).pop();
+            },
+            child: const Text('Tamam'),
+          ),
+        ],
+      ),
+    );
+  }}
+  Future<void> saveNew() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setBool("isNew", false);
   }
 bool isWord (String wrd){
   for (String element in words) {
@@ -405,6 +670,8 @@ bool isWord (String wrd){
 
   Future<void> getPreferances() async {
     final prefs = await SharedPreferences.getInstance();
+    isNew = prefs.getBool("isNew")??true;
+    _showDialog();
     day = prefs.getString('day') ??
         DateFormat('yyyy-MM-dd')
             .format(DateTime.now().subtract(Duration(days: 1)));

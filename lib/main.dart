@@ -38,7 +38,9 @@ class MyHomePage extends StatefulWidget {
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
-
+BoxDecoration grayDec = BoxDecoration(
+    color: Color.fromRGBO(58, 58, 60, 1),
+    border: Border.all(color: Color.fromRGBO(58, 58, 60, 1)));
 BoxDecoration blackDec = BoxDecoration(
     color: Color.fromRGBO(18, 18, 19, 1),
     border: Border.all(color: Color.fromRGBO(58, 58, 60, 1)));
@@ -317,7 +319,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
         indexed = k;
       } else {
-        list[i] = (blackDec);
+        list[i] = (grayDec);
       }
     }
     for (int i = 0; i < indexed.length; i++) {
@@ -336,7 +338,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
           tdW = c;
         } else {
-          list[i] = blackDec;
+          list[i] = grayDec;
         }
       }
     }
@@ -350,7 +352,7 @@ class _MyHomePageState extends State<MyHomePage> {
             .format(DateTime.now().subtract(Duration(days: 1)));
     if (day != DateFormat('yyyy-MM-dd').format(DateTime.now())) {
       ConnectivityResult connectivityResult =
-          await _connectivity.checkConnectivity();
+      await _connectivity.checkConnectivity();
       if (connectivityResult == ConnectivityResult.none) {
         showDialog<String>(
           context: context,
@@ -428,7 +430,7 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
           title: Center(child: Text('Wordle')),
           titleTextStyle:
-              TextStyle(color: Color.fromRGBO(215, 218, 220, 1), fontSize: 20),
+          TextStyle(color: Color.fromRGBO(215, 218, 220, 1), fontSize: 20),
           backgroundColor: Color.fromRGBO(18, 18, 19, 1),
         ),
         body: Container(
@@ -868,44 +870,44 @@ class _MyHomePageState extends State<MyHomePage> {
               decoration: BoxDecoration(color: Color.fromRGBO(18, 18, 19, 1)),
               child: Column(
                 children: [
-                Container(
-                    width: displayWidth / 1.156626506024096,
-                    alignment: Alignment.center,
-                    child: TextField(
-                        enabled: IsEnabled,
-                        inputFormatters: [
-                          UpperCaseTextFormatter(),
-                          FilteringTextInputFormatter.allow(
-                              RegExp('[A-Z,Ü,Ş,İ,Ğ,Ç,Ö]')),
-                          FilteringTextInputFormatter.deny(RegExp('[W,Q,X]'))
-                        ],
-                        controller: controller,
-                        maxLength: 5,
-                        style: TextStyle(color: Color.fromRGBO(215, 218, 220, 1)),
-                        decoration: const InputDecoration(
-                          counterStyle: TextStyle(color: Color.fromRGBO(58, 58, 60, 1)),
-                            labelText: "Cevapla",
-                            labelStyle:
-                            TextStyle(color: Color.fromRGBO(58, 58, 60, 1)),
-                            border: OutlineInputBorder(),
-                            focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Color.fromRGBO(58, 58, 60, 1))),
-                            enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Color.fromRGBO(58, 58, 60, 1)))))),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      fixedSize: Size(displayWidth / 4, 30)),
-                  child: Text("Gönder"),
-                  onPressed: () => setState(() {
-                    if (IsEnabled && controller.text.length == 5) {
-                      AddItem(controller.text);
-                      controller.clear();
-                    }
-                  }),
-                ),SizedBox(height: 30)
-              ],),
+                  Container(
+                      width: displayWidth / 1.156626506024096,
+                      alignment: Alignment.center,
+                      child: TextField(
+                          enabled: IsEnabled,
+                          inputFormatters: [
+                            UpperCaseTextFormatter(),
+                            FilteringTextInputFormatter.allow(
+                                RegExp('[A-Z,Ü,Ş,İ,Ğ,Ç,Ö]')),
+                            FilteringTextInputFormatter.deny(RegExp('[W,Q,X]'))
+                          ],
+                          controller: controller,
+                          maxLength: 5,
+                          style: TextStyle(color: Color.fromRGBO(215, 218, 220, 1)),
+                          decoration: const InputDecoration(
+                              counterStyle: TextStyle(color: Color.fromRGBO(58, 58, 60, 1)),
+                              labelText: "Cevapla",
+                              labelStyle:
+                              TextStyle(color: Color.fromRGBO(58, 58, 60, 1)),
+                              border: OutlineInputBorder(),
+                              focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: Color.fromRGBO(58, 58, 60, 1))),
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: Color.fromRGBO(58, 58, 60, 1)))))),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        fixedSize: Size(displayWidth / 4, 30)),
+                    child: Text("Gönder"),
+                    onPressed: () => setState(() {
+                      if (IsEnabled && controller.text.length == 5) {
+                        AddItem(controller.text);
+                        controller.clear();
+                      }
+                    }),
+                  ),SizedBox(height: 30)
+                ],),
             ),
 
           ]),

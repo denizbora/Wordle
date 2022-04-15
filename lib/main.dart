@@ -366,7 +366,7 @@ bool isWord (String wrd){
         indexed = k;
       } else {
         list[i] = (grayDec);
-        if(letterss[i] != "greenLet" || letterss[i] != "yellowLet"){
+        if(letterss[indexed[i]] != "greenLet" || letterss[indexed[i]] != "yellowLet"){
           letters[indexed[i]]=blackLet;
           letterss[indexed[i]]="blackLet";
         }
@@ -393,7 +393,7 @@ bool isWord (String wrd){
           tdW = c;
         } else {
           list[i] = grayDec;
-          if(letterss[i] != "greenLet" || letterss[i] != "yellowLet"){
+          if(letterss[indexed[i]] != "greenLet" || letterss[indexed[i]] != "yellowLet"){
             letters[indexed[i]]=blackLet;
             letterss[indexed[i]]="blackLet";
           }

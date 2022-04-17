@@ -874,86 +874,89 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Future<void> getPreferances() async {
-    final prefs = await SharedPreferences.getInstance();
-    isNew = prefs.getBool("isNew") ?? true;
-    isVibrate = prefs.getBool("isVibrate")??true;
-    point = prefs.getInt('point') ?? 0;
-    streak = prefs.getInt('streak') ?? 0;
-    _showDialog();
-    day = prefs.getString('day') ??
-        DateFormat('yyyy-MM-dd')
-            .format(DateTime.now().subtract(Duration(days: 1)));
-    if (day != DateFormat('yyyy-MM-dd').format(DateTime.now())) {
-      ConnectivityResult connectivityResult =
-          await _connectivity.checkConnectivity();
-      if (connectivityResult == ConnectivityResult.none) {
-        showDialog<String>(
-          context: context,
-          builder: (BuildContext context) => AlertDialog(
-            title: const Text('İnternet Bağlantınız Yok'),
-            actions: <Widget>[
-              TextButton(
-                onPressed: () {
-                  SystemNavigator.pop();
-                },
-                child: const Text('Çıkış'),
-              ),
-            ],
-          ),
-        );
+    setState(() {
+      final prefs = await SharedPreferences.getInstance();
+      isNew = prefs.getBool("isNew") ?? true;
+      isVibrate = prefs.getBool("isVibrate")??true;
+      point = prefs.getInt('point') ?? 0;
+      streak = prefs.getInt('streak') ?? 0;
+      _showDialog();
+      day = prefs.getString('day') ??
+          DateFormat('yyyy-MM-dd')
+              .format(DateTime.now().subtract(Duration(days: 1)));
+      if (day != DateFormat('yyyy-MM-dd').format(DateTime.now())) {
+        ConnectivityResult connectivityResult =
+            await _connectivity.checkConnectivity();
+        if (connectivityResult == ConnectivityResult.none) {
+          showDialog<String>(
+            context: context,
+            builder: (BuildContext context) => AlertDialog(
+              title: const Text('İnternet Bağlantınız Yok'),
+              actions: <Widget>[
+                TextButton(
+                  onPressed: () {
+                    SystemNavigator.pop();
+                  },
+                  child: const Text('Çıkış'),
+                ),
+              ],
+            ),
+          );
+        } else {
+          await prefs.remove('todaysWord');
+          await prefs.remove('first');
+          await prefs.remove('second');
+          await prefs.remove('third');
+          await prefs.remove('fourth');
+          await prefs.remove('fifth');
+          await prefs.remove('sixth');
+          await prefs.remove('IsEnabled');
+          await prefs.remove('isFirst');
+          await prefs.remove('isSecond');
+          await prefs.remove('isThird');
+          await prefs.remove('isFourth');
+          await prefs.remove('isFifth');
+          await prefs.remove('isSixth');
+          await prefs.remove('pointAdded');
+          getTodaysWord();
+        }
       } else {
-        await prefs.remove('todaysWord');
-        await prefs.remove('first');
-        await prefs.remove('second');
-        await prefs.remove('third');
-        await prefs.remove('fourth');
-        await prefs.remove('fifth');
-        await prefs.remove('sixth');
-        await prefs.remove('IsEnabled');
-        await prefs.remove('isFirst');
-        await prefs.remove('isSecond');
-        await prefs.remove('isThird');
-        await prefs.remove('isFourth');
-        await prefs.remove('isFifth');
-        await prefs.remove('isSixth');
-        await prefs.remove('pointAdded');
-        getTodaysWord();
+        todaysWord = prefs.getString('todaysWord') ?? "";
+        first = prefs.getString('first') ?? "     ";
+        second = prefs.getString('second') ?? "     ";
+        third = prefs.getString('third') ?? "     ";
+        fourth = prefs.getString('fourth') ?? "     ";
+        fifth = prefs.getString('fifth') ?? "     ";
+        sixth = prefs.getString('sixth') ?? "     ";
+        IsEnabled = prefs.getBool('IsEnabled') ?? true;
+        isFirst = prefs.getBool('isFirst') ?? false;
+        isSecond = prefs.getBool('isSecond') ?? false;
+        isThird = prefs.getBool('isThird') ?? false;
+        isFourth = prefs.getBool('isFourth') ?? false;
+        isFifth = prefs.getBool('isFifth') ?? false;
+        isSixth = prefs.getBool('isSixth') ?? false;
+        pointAdded = prefs.getBool('pointAdded') ?? false;
+        if (first != "     ") {
+          compare(1);
+        }
+        if (second != "     ") {
+          compare(2);
+        }
+        if (third != "     ") {
+          compare(3);
+        }
+        if (fourth != "     ") {
+          compare(4);
+        }
+        if (fifth != "     ") {
+          compare(5);
+        }
+        if (sixth != "     ") {
+          compare(6);
+        }
       }
-    } else {
-      todaysWord = prefs.getString('todaysWord') ?? "";
-      first = prefs.getString('first') ?? "     ";
-      second = prefs.getString('second') ?? "     ";
-      third = prefs.getString('third') ?? "     ";
-      fourth = prefs.getString('fourth') ?? "     ";
-      fifth = prefs.getString('fifth') ?? "     ";
-      sixth = prefs.getString('sixth') ?? "     ";
-      IsEnabled = prefs.getBool('IsEnabled') ?? true;
-      isFirst = prefs.getBool('isFirst') ?? false;
-      isSecond = prefs.getBool('isSecond') ?? false;
-      isThird = prefs.getBool('isThird') ?? false;
-      isFourth = prefs.getBool('isFourth') ?? false;
-      isFifth = prefs.getBool('isFifth') ?? false;
-      isSixth = prefs.getBool('isSixth') ?? false;
-      pointAdded = prefs.getBool('pointAdded') ?? false;
-      if (first != "     ") {
-        compare(1);
-      }
-      if (second != "     ") {
-        compare(2);
-      }
-      if (third != "     ") {
-        compare(3);
-      }
-      if (fourth != "     ") {
-        compare(4);
-      }
-      if (fifth != "     ") {
-        compare(5);
-      }
-      if (sixth != "     ") {
-        compare(6);
-      }
-    }
+    });
+
   }
 
   Future<void> getTodaysWord() async {

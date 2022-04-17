@@ -877,6 +877,8 @@ class _MyHomePageState extends State<MyHomePage> {
     final prefs = await SharedPreferences.getInstance();
     isNew = prefs.getBool("isNew") ?? true;
     isVibrate = prefs.getBool("isVibrate")??true;
+    point = prefs.getInt('point') ?? 0;
+    streak = prefs.getInt('streak') ?? 0;
     _showDialog();
     day = prefs.getString('day') ??
         DateFormat('yyyy-MM-dd')
@@ -933,8 +935,6 @@ class _MyHomePageState extends State<MyHomePage> {
       isFifth = prefs.getBool('isFifth') ?? false;
       isSixth = prefs.getBool('isSixth') ?? false;
       pointAdded = prefs.getBool('pointAdded') ?? false;
-      point = prefs.getInt('point') ?? 0;
-      streak = prefs.getInt('streak') ?? 0;
       if (first != "     ") {
         compare(1);
       }

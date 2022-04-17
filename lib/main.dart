@@ -874,7 +874,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Future<void> getPreferances() async {
-    setState(() {
+    setState(() async {
       final prefs = await SharedPreferences.getInstance();
       isNew = prefs.getBool("isNew") ?? true;
       isVibrate = prefs.getBool("isVibrate")??true;

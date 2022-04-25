@@ -191,12 +191,26 @@ class _MyHomePageState extends State<MyHomePage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+                    SizedBox(width: 20,),
                     Text(
                       "WORDLE'i 6 denemede bulun.",
                       style: TextStyle(color: Colors.white),
                     ),
+                    GestureDetector(
+                      onTap: (){
+                        saveNew();
+                        Navigator.of(context).pop();
+                      },
+                      child: Container(
+                          decoration: BoxDecoration(
+                              color: Color.fromRGBO(86, 87, 88,1),
+                              borderRadius: BorderRadius.all(Radius.circular(20))
+                          ),
+                          width: 20,
+                          child: Center(child: Text("X",style: TextStyle(color: Color.fromRGBO(18, 18, 19,1)),),)),
+                    )
                   ],
                 ),
                 SizedBox(
@@ -503,15 +517,6 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
           ),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                saveNew();
-                Navigator.of(context).pop();
-              },
-              child: const Text('Tamam'),
-            ),
-          ],
         ),
       );
     }

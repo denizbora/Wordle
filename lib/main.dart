@@ -722,8 +722,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         color: Color.fromRGBO(89, 159, 68,1),
                         onPressed: () async {
                           await FlutterShare.share(
-                            title: 'Wordle Türkçe 6/6',
-                            text: 'Wordle Türkçe 6/6\n\n'+firstBoxs[0]+firstBoxs[1]+firstBoxs[2]+firstBoxs[3]+firstBoxs[4],
+                            title: 'Wordle Türkçe 1/6',
+                            text: 'Wordle Türkçe 1/6\n\n'+firstBoxs[0]+firstBoxs[1]+firstBoxs[2]+firstBoxs[3]+firstBoxs[4],
                             linkUrl: 'https://github.com/denizbora/Wordle',
                           );
                         }),
@@ -897,8 +897,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         color: Color.fromRGBO(89, 159, 68,1),
                         onPressed: () async {
                           await FlutterShare.share(
-                            title: 'Wordle Türkçe 6/6',
-                            text: 'Wordle Türkçe 6/6\n\n'+firstBoxs[0]+firstBoxs[1]+firstBoxs[2]+firstBoxs[3]+firstBoxs[4]+
+                            title: 'Wordle Türkçe 2',
+                            text: 'Wordle Türkçe 2/6\n\n'+firstBoxs[0]+firstBoxs[1]+firstBoxs[2]+firstBoxs[3]+firstBoxs[4]+
                                 "\n"+secondBoxs[0]+secondBoxs[1]+secondBoxs[2]+secondBoxs[3]+secondBoxs[4],
                             linkUrl: 'https://github.com/denizbora/Wordle',
                           );
@@ -1118,8 +1118,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         color: Color.fromRGBO(89, 159, 68,1),
                         onPressed: () async {
                           await FlutterShare.share(
-                            title: 'Wordle Türkçe 6/6',
-                            text: 'Wordle Türkçe 6/6\n\n'+firstBoxs[0]+firstBoxs[1]+firstBoxs[2]+firstBoxs[3]+firstBoxs[4]+
+                            title: 'Wordle Türkçe 3/6',
+                            text: 'Wordle Türkçe 3/6\n\n'+firstBoxs[0]+firstBoxs[1]+firstBoxs[2]+firstBoxs[3]+firstBoxs[4]+
                                 "\n"+secondBoxs[0]+secondBoxs[1]+secondBoxs[2]+secondBoxs[3]+secondBoxs[4]+
                                 "\n"+thirdBoxs[0]+thirdBoxs[1]+thirdBoxs[2]+thirdBoxs[3]+thirdBoxs[4],
                             linkUrl: 'https://github.com/denizbora/Wordle',
@@ -1385,8 +1385,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         color: Color.fromRGBO(89, 159, 68,1),
                         onPressed: () async {
                           await FlutterShare.share(
-                            title: 'Wordle Türkçe 6/6',
-                            text: 'Wordle Türkçe 6/6\n\n'+firstBoxs[0]+firstBoxs[1]+firstBoxs[2]+firstBoxs[3]+firstBoxs[4]+
+                            title: 'Wordle Türkçe 4/6',
+                            text: 'Wordle Türkçe 4/6\n\n'+firstBoxs[0]+firstBoxs[1]+firstBoxs[2]+firstBoxs[3]+firstBoxs[4]+
                                 "\n"+secondBoxs[0]+secondBoxs[1]+secondBoxs[2]+secondBoxs[3]+secondBoxs[4]+
                                 "\n"+thirdBoxs[0]+thirdBoxs[1]+thirdBoxs[2]+thirdBoxs[3]+thirdBoxs[4]+
                                 "\n"+fourthBoxs[0]+fourthBoxs[1]+fourthBoxs[2]+fourthBoxs[3]+fourthBoxs[4],
@@ -1653,8 +1653,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         color: Color.fromRGBO(89, 159, 68,1),
                         onPressed: () async {
                           await FlutterShare.share(
-                            title: 'Wordle Türkçe 6/6',
-                            text: 'Wordle Türkçe 6/6\n\n'+firstBoxs[0]+firstBoxs[1]+firstBoxs[2]+firstBoxs[3]+firstBoxs[4]+
+                            title: 'Wordle Türkçe 5/6',
+                            text: 'Wordle Türkçe 5/6\n\n'+firstBoxs[0]+firstBoxs[1]+firstBoxs[2]+firstBoxs[3]+firstBoxs[4]+
                                 "\n"+secondBoxs[0]+secondBoxs[1]+secondBoxs[2]+secondBoxs[3]+secondBoxs[4]+
                                 "\n"+thirdBoxs[0]+thirdBoxs[1]+thirdBoxs[2]+thirdBoxs[3]+thirdBoxs[4]+
                                 "\n"+fourthBoxs[0]+fourthBoxs[1]+fourthBoxs[2]+fourthBoxs[3]+fourthBoxs[4]+

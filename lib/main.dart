@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:flutter_share/flutter_share.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -71,11 +72,17 @@ class _MyHomePageState extends State<MyHomePage> {
   List<String> words = [];
   String todaysWord = "";
   List<BoxDecoration> firsts = List<BoxDecoration>.filled(5, blackDec);
+  List<String> firstBoxs = List<String>.filled(5, "⬛");
   List<BoxDecoration> seconds = List<BoxDecoration>.filled(5, blackDec);
+  List<String> secondBoxs = List<String>.filled(5, "⬛");
   List<BoxDecoration> thirds = List<BoxDecoration>.filled(5, blackDec);
+  List<String> thirdBoxs = List<String>.filled(5, "⬛");
   List<BoxDecoration> fourths = List<BoxDecoration>.filled(5, blackDec);
+  List<String> fourthBoxs = List<String>.filled(5, "⬛");
   List<BoxDecoration> fifths = List<BoxDecoration>.filled(5, blackDec);
+  List<String> fifthBoxs = List<String>.filled(5, "⬛");
   List<BoxDecoration> sixths = List<BoxDecoration>.filled(5, blackDec);
+  List<String> sixthBoxs = List<String>.filled(5, "⬛");
   Map letters = {
     "E": grayLet,
     "R": grayLet,
@@ -514,10 +521,12 @@ class _MyHomePageState extends State<MyHomePage> {
     final prefs = await SharedPreferences.getInstance();
     prefs.setBool("isNew", false);
   }
+
   Future<void> setVibrate() async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setBool("isVibrate", isVibrate);
   }
+
   bool isWord(String wrd) {
     for (String element in words) {
       if (element == wrd) {
@@ -595,11 +604,12 @@ class _MyHomePageState extends State<MyHomePage> {
         case 1:
           isFirst = true;
           firsts = comp(first);
+          firstBoxs = comp1(first);
           if (first == todaysWord) {
             IsEnabled = false;
             if (pointAdded == false) {
               pointAdded = true;
-              point+=6;
+              point += 6;
               streak++;
               prefs.setInt("point", point);
               prefs.setInt("streak", streak);
@@ -607,30 +617,129 @@ class _MyHomePageState extends State<MyHomePage> {
             }
             prefs.setBool('IsEnabled', false);
             showDialog<String>(
-              context: context,
-              builder: (BuildContext context) => AlertDialog(
-                title: const Text(
-                    'Tebrikler Kazandınız Bir Sonraki Oyun İçin Yarını Bekleyiniz'),
-                actions: <Widget>[
-                  TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: const Text('OK'),
+                context: context,
+                builder: (BuildContext context) => AlertDialog(
+                  backgroundColor: Color.fromRGBO(18, 18, 19, 1),
+                  content: Container(
+                    width: displayWidth * 0.7,
+                    height: displayHeight * 0.3,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                SizedBox(width: 20,),
+                                Text(
+                                  "Tebrikler kazandınız.",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                                GestureDetector(
+                                  onTap: (){
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Container(
+                                      decoration: BoxDecoration(
+                                          color: Color.fromRGBO(86, 87, 88,1),
+                                          borderRadius: BorderRadius.all(Radius.circular(20))
+                                      ),
+                                      width: 20,
+                                      child: Center(child: Text("X",style: TextStyle(color: Color.fromRGBO(18, 18, 19,1)),),)),
+                                )
+                              ],
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            Container(
+                              width: displayWidth * 0.8,
+                              height: 2,
+                              color: Color.fromRGBO(58, 58, 60, 1),
+                            ),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: firsts[0],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: firsts[1],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: firsts[2],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: firsts[3],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: firsts[4],
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                ],
-              ),
-            );
+                  actions: <Widget>[
+                    RaisedButton(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text("Paylaş",style: TextStyle(color: Colors.white,fontSize: 20),),
+                            SizedBox(width: 10,),
+                            Icon(Icons.share,color: Colors.white,)
+                          ],
+                        ),
+                        color: Color.fromRGBO(89, 159, 68,1),
+                        onPressed: () async {
+                          await FlutterShare.share(
+                            title: 'Wordle Türkçe 6/6',
+                            text: 'Wordle Türkçe 6/6\n\n'+firstBoxs[0]+firstBoxs[1]+firstBoxs[2]+firstBoxs[3]+firstBoxs[4],
+                            linkUrl: 'https://github.com/denizbora/Wordle',
+                          );
+                        }),
+                  ],
+                ));
           }
           break;
         case 2:
           isSecond = true;
           seconds = comp(second);
+          secondBoxs = comp1(second);
           if (second == todaysWord) {
             IsEnabled = false;
             if (pointAdded == false) {
               pointAdded = true;
-              point+=5;
+              point += 5;
               streak++;
               prefs.setInt("point", point);
               prefs.setInt("streak", streak);
@@ -638,30 +747,175 @@ class _MyHomePageState extends State<MyHomePage> {
             }
             prefs.setBool('IsEnabled', false);
             showDialog<String>(
-              context: context,
-              builder: (BuildContext context) => AlertDialog(
-                title: const Text(
-                    'Tebrikler Kazandınız Bir Sonraki Oyun İçin Yarını Bekleyiniz'),
-                actions: <Widget>[
-                  TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: const Text('OK'),
+                context: context,
+                builder: (BuildContext context) => AlertDialog(
+                  backgroundColor: Color.fromRGBO(18, 18, 19, 1),
+                  content: Container(
+                    width: displayWidth * 0.7,
+                    height: displayHeight * 0.3,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                SizedBox(width: 20,),
+                                Text(
+                                  "Tebrikler kazandınız.",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                                GestureDetector(
+                                  onTap: (){
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Container(
+                                      decoration: BoxDecoration(
+                                          color: Color.fromRGBO(86, 87, 88,1),
+                                          borderRadius: BorderRadius.all(Radius.circular(20))
+                                      ),
+                                      width: 20,
+                                      child: Center(child: Text("X",style: TextStyle(color: Color.fromRGBO(18, 18, 19,1)),),)),
+                                )
+                              ],
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            Container(
+                              width: displayWidth * 0.8,
+                              height: 2,
+                              color: Color.fromRGBO(58, 58, 60, 1),
+                            ),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: firsts[0],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: firsts[1],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: firsts[2],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: firsts[3],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: firsts[4],
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 3,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: seconds[0],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: seconds[1],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: seconds[2],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: seconds[3],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: seconds[4],
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                ],
-              ),
-            );
+                  actions: <Widget>[
+                    RaisedButton(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text("Paylaş",style: TextStyle(color: Colors.white,fontSize: 20),),
+                            SizedBox(width: 10,),
+                            Icon(Icons.share,color: Colors.white,)
+                          ],
+                        ),
+                        color: Color.fromRGBO(89, 159, 68,1),
+                        onPressed: () async {
+                          await FlutterShare.share(
+                            title: 'Wordle Türkçe 6/6',
+                            text: 'Wordle Türkçe 6/6\n\n'+firstBoxs[0]+firstBoxs[1]+firstBoxs[2]+firstBoxs[3]+firstBoxs[4]+
+                                "\n"+secondBoxs[0]+secondBoxs[1]+secondBoxs[2]+secondBoxs[3]+secondBoxs[4],
+                            linkUrl: 'https://github.com/denizbora/Wordle',
+                          );
+                        }),
+                  ],
+                ));
           }
           break;
         case 3:
           isThird = true;
           thirds = comp(third);
+          thirdBoxs = comp1(third);
           if (third == todaysWord) {
             IsEnabled = false;
             if (pointAdded == false) {
               pointAdded = true;
-              point+=4;
+              point += 4;
               streak++;
               prefs.setInt("point", point);
               prefs.setInt("streak", streak);
@@ -669,30 +923,221 @@ class _MyHomePageState extends State<MyHomePage> {
             }
             prefs.setBool('IsEnabled', false);
             showDialog<String>(
-              context: context,
-              builder: (BuildContext context) => AlertDialog(
-                title: const Text(
-                    'Tebrikler Kazandınız Bir Sonraki Oyun İçin Yarını Bekleyiniz'),
-                actions: <Widget>[
-                  TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: const Text('OK'),
+                context: context,
+                builder: (BuildContext context) => AlertDialog(
+                  backgroundColor: Color.fromRGBO(18, 18, 19, 1),
+                  content: Container(
+                    width: displayWidth * 0.7,
+                    height: displayHeight * 0.3,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                SizedBox(width: 20,),
+                                Text(
+                                  "Tebrikler kazandınız.",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                                GestureDetector(
+                                  onTap: (){
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Container(
+                                      decoration: BoxDecoration(
+                                          color: Color.fromRGBO(86, 87, 88,1),
+                                          borderRadius: BorderRadius.all(Radius.circular(20))
+                                      ),
+                                      width: 20,
+                                      child: Center(child: Text("X",style: TextStyle(color: Color.fromRGBO(18, 18, 19,1)),),)),
+                                )
+                              ],
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            Container(
+                              width: displayWidth * 0.8,
+                              height: 2,
+                              color: Color.fromRGBO(58, 58, 60, 1),
+                            ),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: firsts[0],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: firsts[1],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: firsts[2],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: firsts[3],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: firsts[4],
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 3,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: seconds[0],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: seconds[1],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: seconds[2],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: seconds[3],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: seconds[4],
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 3,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: thirds[0],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: thirds[1],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: thirds[2],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: thirds[3],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: thirds[4],
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                ],
-              ),
-            );
+                  actions: <Widget>[
+                    RaisedButton(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text("Paylaş",style: TextStyle(color: Colors.white,fontSize: 20),),
+                            SizedBox(width: 10,),
+                            Icon(Icons.share,color: Colors.white,)
+                          ],
+                        ),
+                        color: Color.fromRGBO(89, 159, 68,1),
+                        onPressed: () async {
+                          await FlutterShare.share(
+                            title: 'Wordle Türkçe 6/6',
+                            text: 'Wordle Türkçe 6/6\n\n'+firstBoxs[0]+firstBoxs[1]+firstBoxs[2]+firstBoxs[3]+firstBoxs[4]+
+                                "\n"+secondBoxs[0]+secondBoxs[1]+secondBoxs[2]+secondBoxs[3]+secondBoxs[4]+
+                                "\n"+thirdBoxs[0]+thirdBoxs[1]+thirdBoxs[2]+thirdBoxs[3]+thirdBoxs[4],
+                            linkUrl: 'https://github.com/denizbora/Wordle',
+                          );
+                        }),
+                  ],
+                ));
           }
           break;
         case 4:
           isFourth = true;
           fourths = comp(fourth);
+          fourthBoxs = comp1(fourth);
           if (fourth == todaysWord) {
             IsEnabled = false;
             if (pointAdded == false) {
               pointAdded = true;
-              point+=3;
+              point += 3;
               streak++;
               prefs.setInt("point", point);
               prefs.setInt("streak", streak);
@@ -700,30 +1145,267 @@ class _MyHomePageState extends State<MyHomePage> {
             }
             prefs.setBool('IsEnabled', false);
             showDialog<String>(
-              context: context,
-              builder: (BuildContext context) => AlertDialog(
-                title: const Text(
-                    'Tebrikler Kazandınız Bir Sonraki Oyun İçin Yarını Bekleyiniz'),
-                actions: <Widget>[
-                  TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: const Text('OK'),
+                context: context,
+                builder: (BuildContext context) => AlertDialog(
+                  backgroundColor: Color.fromRGBO(18, 18, 19, 1),
+                  content: Container(
+                    width: displayWidth * 0.7,
+                    height: displayHeight * 0.3,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                SizedBox(width: 20,),
+                                Text(
+                                  "Tebrikler kazandınız.",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                                GestureDetector(
+                                  onTap: (){
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Container(
+                                      decoration: BoxDecoration(
+                                          color: Color.fromRGBO(86, 87, 88,1),
+                                          borderRadius: BorderRadius.all(Radius.circular(20))
+                                      ),
+                                      width: 20,
+                                      child: Center(child: Text("X",style: TextStyle(color: Color.fromRGBO(18, 18, 19,1)),),)),
+                                )
+                              ],
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            Container(
+                              width: displayWidth * 0.8,
+                              height: 2,
+                              color: Color.fromRGBO(58, 58, 60, 1),
+                            ),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: firsts[0],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: firsts[1],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: firsts[2],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: firsts[3],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: firsts[4],
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 3,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: seconds[0],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: seconds[1],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: seconds[2],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: seconds[3],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: seconds[4],
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 3,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: thirds[0],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: thirds[1],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: thirds[2],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: thirds[3],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: thirds[4],
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 3,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: fifths[0],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: fifths[1],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: fifths[2],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: fifths[3],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: fifths[4],
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                ],
-              ),
-            );
+                  actions: <Widget>[
+                    RaisedButton(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text("Paylaş",style: TextStyle(color: Colors.white,fontSize: 20),),
+                            SizedBox(width: 10,),
+                            Icon(Icons.share,color: Colors.white,)
+                          ],
+                        ),
+                        color: Color.fromRGBO(89, 159, 68,1),
+                        onPressed: () async {
+                          await FlutterShare.share(
+                            title: 'Wordle Türkçe 6/6',
+                            text: 'Wordle Türkçe 6/6\n\n'+firstBoxs[0]+firstBoxs[1]+firstBoxs[2]+firstBoxs[3]+firstBoxs[4]+
+                                "\n"+secondBoxs[0]+secondBoxs[1]+secondBoxs[2]+secondBoxs[3]+secondBoxs[4]+
+                                "\n"+thirdBoxs[0]+thirdBoxs[1]+thirdBoxs[2]+thirdBoxs[3]+thirdBoxs[4]+
+                                "\n"+fourthBoxs[0]+fourthBoxs[1]+fourthBoxs[2]+fourthBoxs[3]+fourthBoxs[4],
+                            linkUrl: 'https://github.com/denizbora/Wordle',
+                          );
+                        }),
+                  ],
+                ));
           }
           break;
         case 5:
           isFifth = true;
           fifths = comp(fifth);
+          fifthBoxs = comp1(fifth);
           if (fifth == todaysWord) {
             IsEnabled = false;
             if (pointAdded == false) {
               pointAdded = true;
-              point+=2;
+              point += 2;
               streak++;
               prefs.setInt("point", point);
               prefs.setInt("streak", streak);
@@ -731,25 +1413,263 @@ class _MyHomePageState extends State<MyHomePage> {
             }
             prefs.setBool('IsEnabled', false);
             showDialog<String>(
-              context: context,
-              builder: (BuildContext context) => AlertDialog(
-                title: const Text(
-                    'Tebrikler Kazandınız Bir Sonraki Oyun İçin Yarını Bekleyiniz'),
-                actions: <Widget>[
-                  TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: const Text('OK'),
+                context: context,
+                builder: (BuildContext context) => AlertDialog(
+                  backgroundColor: Color.fromRGBO(18, 18, 19, 1),
+                  content: Container(
+                    width: displayWidth * 0.7,
+                    height: displayHeight * 0.3,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                SizedBox(width: 20,),
+                                Text(
+                                  "Tebrikler kazandınız.",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                                GestureDetector(
+                                  onTap: (){
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Container(
+                                      decoration: BoxDecoration(
+                                          color: Color.fromRGBO(86, 87, 88,1),
+                                          borderRadius: BorderRadius.all(Radius.circular(20))
+                                      ),
+                                      width: 20,
+                                      child: Center(child: Text("X",style: TextStyle(color: Color.fromRGBO(18, 18, 19,1)),),)),
+                                )
+                              ],
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            Container(
+                              width: displayWidth * 0.8,
+                              height: 2,
+                              color: Color.fromRGBO(58, 58, 60, 1),
+                            ),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: firsts[0],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: firsts[1],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: firsts[2],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: firsts[3],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: firsts[4],
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 3,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: seconds[0],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: seconds[1],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: seconds[2],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: seconds[3],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: seconds[4],
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 3,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: thirds[0],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: thirds[1],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: thirds[2],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: thirds[3],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: thirds[4],
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 3,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: fifths[0],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: fifths[1],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: fifths[2],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: fifths[3],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: fifths[4],
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                ],
-              ),
-            );
+                  actions: <Widget>[
+                    RaisedButton(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text("Paylaş",style: TextStyle(color: Colors.white,fontSize: 20),),
+                            SizedBox(width: 10,),
+                            Icon(Icons.share,color: Colors.white,)
+                          ],
+                        ),
+                        color: Color.fromRGBO(89, 159, 68,1),
+                        onPressed: () async {
+                          await FlutterShare.share(
+                            title: 'Wordle Türkçe 6/6',
+                            text: 'Wordle Türkçe 6/6\n\n'+firstBoxs[0]+firstBoxs[1]+firstBoxs[2]+firstBoxs[3]+firstBoxs[4]+
+                                "\n"+secondBoxs[0]+secondBoxs[1]+secondBoxs[2]+secondBoxs[3]+secondBoxs[4]+
+                                "\n"+thirdBoxs[0]+thirdBoxs[1]+thirdBoxs[2]+thirdBoxs[3]+thirdBoxs[4]+
+                                "\n"+fourthBoxs[0]+fourthBoxs[1]+fourthBoxs[2]+fourthBoxs[3]+fourthBoxs[4]+
+                                "\n"+fifthBoxs[0]+fifthBoxs[1]+fifthBoxs[2]+fifthBoxs[3]+fifthBoxs[4],
+                            linkUrl: 'https://github.com/denizbora/Wordle',
+                          );
+                        }),
+                  ],
+                ));
           }
           break;
         case 6:
           isSixth = true;
           sixths = comp(sixth);
+          sixthBoxs = comp1(sixth);
           if (sixth == todaysWord) {
             IsEnabled = false;
             if (pointAdded == false) {
@@ -762,20 +1682,304 @@ class _MyHomePageState extends State<MyHomePage> {
             }
             prefs.setBool('IsEnabled', false);
             showDialog<String>(
-              context: context,
-              builder: (BuildContext context) => AlertDialog(
-                title: const Text(
-                    'Tebrikler Kazandınız Bir Sonraki Oyun İçin Yarını Bekleyiniz'),
-                actions: <Widget>[
-                  TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: const Text('OK'),
+                context: context,
+                builder: (BuildContext context) => AlertDialog(
+                  backgroundColor: Color.fromRGBO(18, 18, 19, 1),
+                  content: Container(
+                    width: displayWidth * 0.7,
+                    height: displayHeight * 0.3,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                SizedBox(width: 20,),
+                                Text(
+                                  "Tebrikler kazandınız.",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                                GestureDetector(
+                                  onTap: (){
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: Color.fromRGBO(86, 87, 88,1),
+                                      borderRadius: BorderRadius.all(Radius.circular(20))
+                                    ),
+                                    width: 20,
+                                  child: Center(child: Text("X",style: TextStyle(color: Color.fromRGBO(18, 18, 19,1)),),)),
+                                )
+                              ],
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            Container(
+                              width: displayWidth * 0.8,
+                              height: 2,
+                              color: Color.fromRGBO(58, 58, 60, 1),
+                            ),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: firsts[0],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: firsts[1],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: firsts[2],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: firsts[3],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: firsts[4],
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 3,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: seconds[0],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: seconds[1],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: seconds[2],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: seconds[3],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: seconds[4],
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 3,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: thirds[0],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: thirds[1],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: thirds[2],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: thirds[3],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: thirds[4],
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 3,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: fifths[0],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: fifths[1],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: fifths[2],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: fifths[3],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: fifths[4],
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 3,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: sixths[0],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: sixths[1],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: sixths[2],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: sixths[3],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: sixths[4],
+                                ),
+                              ],
+                            ),
+
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                ],
-              ),
-            );
+                  actions: <Widget>[
+                    RaisedButton(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text("Paylaş",style: TextStyle(color: Colors.white,fontSize: 20),),
+                            SizedBox(width: 10,),
+                            Icon(Icons.share,color: Colors.white,)
+                          ],
+                        ),
+                        color: Color.fromRGBO(89, 159, 68,1),
+                        onPressed: () async {
+                          await FlutterShare.share(
+                              title: 'Wordle Türkçe 6/6',
+                              text: 'Wordle Türkçe 6/6\n\n'+firstBoxs[0]+firstBoxs[1]+firstBoxs[2]+firstBoxs[3]+firstBoxs[4]+
+                                  "\n"+secondBoxs[0]+secondBoxs[1]+secondBoxs[2]+secondBoxs[3]+secondBoxs[4]+
+                                  "\n"+thirdBoxs[0]+thirdBoxs[1]+thirdBoxs[2]+thirdBoxs[3]+thirdBoxs[4]+
+                                  "\n"+fourthBoxs[0]+fourthBoxs[1]+fourthBoxs[2]+fourthBoxs[3]+fourthBoxs[4]+
+                                  "\n"+fifthBoxs[0]+fifthBoxs[1]+fifthBoxs[2]+fifthBoxs[3]+fifthBoxs[4]+
+                                  "\n"+sixthBoxs[0]+sixthBoxs[1]+sixthBoxs[2]+sixthBoxs[3]+sixthBoxs[4],
+                              linkUrl: 'https://github.com/denizbora/Wordle',
+                          );
+                        }),
+                  ],
+                ));
           } else {
             IsEnabled = false;
             if (pointAdded == false) {
@@ -786,27 +1990,362 @@ class _MyHomePageState extends State<MyHomePage> {
             }
             prefs.setBool('IsEnabled', false);
             showDialog<String>(
-              context: context,
-              builder: (BuildContext context) => AlertDialog(
-                title: Text('Kaybettiniz Doğru Kelime: $todaysWord'),
-                actions: <Widget>[
-                  TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: const Text('OK'),
+                context: context,
+                builder: (BuildContext context) => AlertDialog(
+                  backgroundColor: Color.fromRGBO(18, 18, 19, 1),
+                  content: Container(
+                    width: displayWidth * 0.7,
+                    height: displayHeight * 0.3,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                SizedBox(width: 20,),
+                                Text(
+                                  "Kaybettiniz. Kelime: "+todaysWord,
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                                GestureDetector(
+                                  onTap: (){
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Container(
+                                      decoration: BoxDecoration(
+                                          color: Color.fromRGBO(86, 87, 88,1),
+                                          borderRadius: BorderRadius.all(Radius.circular(20))
+                                      ),
+                                      width: 20,
+                                      child: Center(child: Text("X",style: TextStyle(color: Color.fromRGBO(18, 18, 19,1)),),)),
+                                )
+                              ],
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            Container(
+                              width: displayWidth * 0.8,
+                              height: 2,
+                              color: Color.fromRGBO(58, 58, 60, 1),
+                            ),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: firsts[0],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: firsts[1],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: firsts[2],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: firsts[3],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: firsts[4],
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 3,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: seconds[0],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: seconds[1],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: seconds[2],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: seconds[3],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: seconds[4],
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 3,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: thirds[0],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: thirds[1],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: thirds[2],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: thirds[3],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: thirds[4],
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 3,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: fifths[0],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: fifths[1],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: fifths[2],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: fifths[3],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: fifths[4],
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 3,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: sixths[0],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: sixths[1],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: sixths[2],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: sixths[3],
+                                ),
+                                SizedBox(
+                                  width: 3,
+                                ),
+                                Container(
+                                  width: 30,
+                                  height: 30,
+                                  decoration: sixths[4],
+                                ),
+                              ],
+                            ),
+
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                ],
-              ),
-            );
+                  actions: <Widget>[
+                    RaisedButton(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text("Paylaş",style: TextStyle(color: Colors.white,fontSize: 20),),
+                            SizedBox(width: 10,),
+                            Icon(Icons.share,color: Colors.white,)
+                          ],
+                        ),
+                        color: Color.fromRGBO(89, 159, 68,1),
+                        onPressed: () async {
+                          await FlutterShare.share(
+                            title: 'Wordle Türkçe X/6',
+                            text: 'Wordle Türkçe X/6\n\n'+firstBoxs[0]+firstBoxs[1]+firstBoxs[2]+firstBoxs[3]+firstBoxs[4]+
+                                "\n"+secondBoxs[0]+secondBoxs[1]+secondBoxs[2]+secondBoxs[3]+secondBoxs[4]+
+                                "\n"+thirdBoxs[0]+thirdBoxs[1]+thirdBoxs[2]+thirdBoxs[3]+thirdBoxs[4]+
+                                "\n"+fourthBoxs[0]+fourthBoxs[1]+fourthBoxs[2]+fourthBoxs[3]+fourthBoxs[4]+
+                                "\n"+fifthBoxs[0]+fifthBoxs[1]+fifthBoxs[2]+fifthBoxs[3]+fifthBoxs[4]+
+                                "\n"+sixthBoxs[0]+sixthBoxs[1]+sixthBoxs[2]+sixthBoxs[3]+sixthBoxs[4],
+                            linkUrl: 'https://github.com/denizbora/Wordle',
+                          );
+                        }),
+                  ],
+                ));
           }
           break;
       }
     });
   }
+  List<String> comp1(String indexed){
+    List<String> list = List<String>.filled(5, '◻️');
+    String tdW = todaysWord;
+    for (int i = 0; i < indexed.length; i++) {
+      if (tdW[i] == indexed[i]) {
+        list[i] = '🟩';
+        var c = "";
+        var k = "";
+        for (int j = 0; j < tdW.length; j++) {
+          if (j != i) {
+            c += tdW[j];
+          } else {
+            c += ' ';
+          }
+        }
+        tdW = c;
+        for (int j = 0; j < indexed.length; j++) {
+          if (i != j) {
+            k += indexed[j];
+          } else {
+            k += ' ';
+          }
+        }
 
+        indexed = k;
+      } else {
+        list[i] = ('⬛');
+      }
+    }
+    for (int i = 0; i < indexed.length; i++) {
+      if (indexed[i] != ' ') {
+        if (tdW.contains(indexed[i])) {
+          list[i] = '🟨';
+          var d = tdW.indexOf(indexed[i]);
+          var c = "";
+          for (int j = 0; j < tdW.length; j++) {
+            if (j != d) {
+              c += tdW[j];
+            } else {
+              c += ' ';
+            }
+          }
+
+          tdW = c;
+        } else {
+          list[i] = '⬛';
+        }
+      }
+    }
+    return list;
+  }
   List<BoxDecoration> comp(String indexed) {
-    List<BoxDecoration> list = List<BoxDecoration>.filled(6, blackDec);
+    List<BoxDecoration> list = List<BoxDecoration>.filled(5, blackDec);
     String tdW = todaysWord;
     for (int i = 0; i < indexed.length; i++) {
       if (tdW[i] == indexed[i]) {
@@ -834,6 +2373,7 @@ class _MyHomePageState extends State<MyHomePage> {
         indexed = k;
       } else {
         list[i] = (grayDec);
+
         if (letterss[indexed[i]].toString() != "greenLet" &&
             letterss[indexed[i]].toString() != "yellowLet") {
           letters[indexed[i]] = blackLet;
@@ -877,16 +2417,16 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() async {
       final prefs = await SharedPreferences.getInstance();
       isNew = prefs.getBool("isNew") ?? true;
-      isVibrate = prefs.getBool("isVibrate")??true;
+      isVibrate = prefs.getBool("isVibrate") ?? true;
       point = prefs.getInt('point') ?? 0;
       _showDialog();
       day = prefs.getString('day') ??
           DateFormat('yyyy-MM-dd')
               .format(DateTime.now().subtract(Duration(days: 2)));
-      if(DateTime.now().difference(DateTime.parse(day)).inDays>1){
-        streak=0;
+      if (DateTime.now().difference(DateTime.parse(day)).inDays > 1) {
+        streak = 0;
         prefs.setInt("streak", 0);
-      }else{
+      } else {
         streak = prefs.getInt('streak') ?? 0;
       }
       if (day != DateFormat('yyyy-MM-dd').format(DateTime.now())) {
@@ -961,12 +2501,11 @@ class _MyHomePageState extends State<MyHomePage> {
         }
       }
     });
-
   }
 
   Future<void> getTodaysWord() async {
     final prefs = await SharedPreferences.getInstance();
-    var url = Uri.https('wordle.denizbora.net', '/NewDay/'+point.toString());
+    var url = Uri.https('wordle.denizbora.net', '/NewDay/' + point.toString());
     var response = await http.get(url);
     todaysWord = response.body;
     await prefs.setString('todaysWord', todaysWord);
@@ -1079,20 +2618,47 @@ class _MyHomePageState extends State<MyHomePage> {
     displayHeight = MediaQuery.of(context).size.height;
     return Scaffold(
         appBar: AppBar(
-          leading: Row(children: [
-            SizedBox(width: 7,),
-            Icon(Icons.local_fire_department,color: Color.fromRGBO(215, 218, 220, 1),size: 25,),
-            SizedBox(width: 3,),
-            Text(streak.toString(),style: TextStyle(color: Color.fromRGBO(215, 218, 220, 1),fontSize: 25),)
-          ],),
+          leading: Row(
+            children: [
+              SizedBox(
+                width: 7,
+              ),
+              Icon(
+                Icons.local_fire_department,
+                color: Color.fromRGBO(215, 218, 220, 1),
+                size: 25,
+              ),
+              SizedBox(
+                width: 3,
+              ),
+              Text(
+                streak.toString(),
+                style: TextStyle(
+                    color: Color.fromRGBO(215, 218, 220, 1), fontSize: 25),
+              )
+            ],
+          ),
           actions: [
-            Row(children: [
-              Icon(Icons.star, color: Color.fromRGBO(215, 218, 220, 1),size: 25,),
-              SizedBox(width: 3,),
-              Text(point.toString(),style: TextStyle(color: Color.fromRGBO(215, 218, 220, 1),fontSize: 25),),
-              SizedBox(width: 7,),
-
-            ],),
+            Row(
+              children: [
+                Icon(
+                  Icons.star,
+                  color: Color.fromRGBO(215, 218, 220, 1),
+                  size: 25,
+                ),
+                SizedBox(
+                  width: 3,
+                ),
+                Text(
+                  point.toString(),
+                  style: TextStyle(
+                      color: Color.fromRGBO(215, 218, 220, 1), fontSize: 25),
+                ),
+                SizedBox(
+                  width: 7,
+                ),
+              ],
+            ),
           ],
           title: Center(child: Text('Wordle')),
           titleTextStyle:
@@ -1535,19 +3101,24 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: [
                   Center(
                     child: GestureDetector(
-                      onTap: (){
-                        if(isVibrate && IsEnabled){
-                          HapticFeedback.mediumImpact();
-                        }
-                        setState(() {
-                          isVibrate=!isVibrate;
-                        });
-                        setVibrate();
-                      },
+                        onTap: () {
+                          if (isVibrate && IsEnabled) {
+                            HapticFeedback.mediumImpact();
+                          }
+                          setState(() {
+                            isVibrate = !isVibrate;
+                          });
+                          setVibrate();
+                        },
                         child: Container(
                           child: Icon(
-                            Icons.vibration,color: Colors.white,),
-                          decoration: isVibrate?grayLet:blackLet,width: displayWidth/12,height: displayWidth/12,)),
+                            Icons.vibration,
+                            color: Colors.white,
+                          ),
+                          decoration: isVibrate ? grayLet : blackLet,
+                          width: displayWidth / 12,
+                          height: displayWidth / 12,
+                        )),
                   ),
                   SizedBox(height: 20),
                   Row(
@@ -1558,7 +3129,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           if (IsEnabled) {
                             addLetter('E');
                           }
-                          if(isVibrate && IsEnabled){
+                          if (isVibrate && IsEnabled) {
                             HapticFeedback.mediumImpact();
                           }
                         },
@@ -1581,7 +3152,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           if (IsEnabled) {
                             addLetter('R');
                           }
-                          if(isVibrate && IsEnabled){
+                          if (isVibrate && IsEnabled) {
                             HapticFeedback.mediumImpact();
                           }
                         },
@@ -1604,7 +3175,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           if (IsEnabled) {
                             addLetter('T');
                           }
-                          if(isVibrate && IsEnabled){
+                          if (isVibrate && IsEnabled) {
                             HapticFeedback.mediumImpact();
                           }
                         },
@@ -1627,7 +3198,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           if (IsEnabled) {
                             addLetter('Y');
                           }
-                          if(isVibrate && IsEnabled){
+                          if (isVibrate && IsEnabled) {
                             HapticFeedback.mediumImpact();
                           }
                         },
@@ -1650,7 +3221,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           if (IsEnabled) {
                             addLetter('U');
                           }
-                          if(isVibrate && IsEnabled){
+                          if (isVibrate && IsEnabled) {
                             HapticFeedback.mediumImpact();
                           }
                         },
@@ -1673,7 +3244,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           if (IsEnabled) {
                             addLetter('I');
                           }
-                          if(isVibrate && IsEnabled){
+                          if (isVibrate && IsEnabled) {
                             HapticFeedback.mediumImpact();
                           }
                         },
@@ -1696,7 +3267,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           if (IsEnabled) {
                             addLetter('O');
                           }
-                          if(isVibrate && IsEnabled){
+                          if (isVibrate && IsEnabled) {
                             HapticFeedback.mediumImpact();
                           }
                         },
@@ -1719,7 +3290,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           if (IsEnabled) {
                             addLetter('P');
                           }
-                          if(isVibrate && IsEnabled){
+                          if (isVibrate && IsEnabled) {
                             HapticFeedback.mediumImpact();
                           }
                         },
@@ -1742,7 +3313,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           if (IsEnabled) {
                             addLetter('Ğ');
                           }
-                          if(isVibrate && IsEnabled){
+                          if (isVibrate && IsEnabled) {
                             HapticFeedback.mediumImpact();
                           }
                         },
@@ -1765,7 +3336,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           if (IsEnabled) {
                             addLetter('Ü');
                           }
-                          if(isVibrate && IsEnabled){
+                          if (isVibrate && IsEnabled) {
                             HapticFeedback.mediumImpact();
                           }
                         },
@@ -1799,7 +3370,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           if (IsEnabled) {
                             addLetter('A');
                           }
-                          if(isVibrate && IsEnabled){
+                          if (isVibrate && IsEnabled) {
                             HapticFeedback.mediumImpact();
                           }
                         },
@@ -1822,7 +3393,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           if (IsEnabled) {
                             addLetter('S');
                           }
-                          if(isVibrate && IsEnabled){
+                          if (isVibrate && IsEnabled) {
                             HapticFeedback.mediumImpact();
                           }
                         },
@@ -1845,7 +3416,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           if (IsEnabled) {
                             addLetter('D');
                           }
-                          if(isVibrate && IsEnabled){
+                          if (isVibrate && IsEnabled) {
                             HapticFeedback.mediumImpact();
                           }
                         },
@@ -1868,7 +3439,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           if (IsEnabled) {
                             addLetter('F');
                           }
-                          if(isVibrate && IsEnabled){
+                          if (isVibrate && IsEnabled) {
                             HapticFeedback.mediumImpact();
                           }
                         },
@@ -1891,7 +3462,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           if (IsEnabled) {
                             addLetter('G');
                           }
-                          if(isVibrate && IsEnabled){
+                          if (isVibrate && IsEnabled) {
                             HapticFeedback.mediumImpact();
                           }
                         },
@@ -1914,7 +3485,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           if (IsEnabled) {
                             addLetter('H');
                           }
-                          if(isVibrate && IsEnabled){
+                          if (isVibrate && IsEnabled) {
                             HapticFeedback.mediumImpact();
                           }
                         },
@@ -1937,7 +3508,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           if (IsEnabled) {
                             addLetter('J');
                           }
-                          if(isVibrate && IsEnabled){
+                          if (isVibrate && IsEnabled) {
                             HapticFeedback.mediumImpact();
                           }
                         },
@@ -1960,7 +3531,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           if (IsEnabled) {
                             addLetter('K');
                           }
-                          if(isVibrate && IsEnabled){
+                          if (isVibrate && IsEnabled) {
                             HapticFeedback.mediumImpact();
                           }
                         },
@@ -1983,7 +3554,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           if (IsEnabled) {
                             addLetter('L');
                           }
-                          if(isVibrate && IsEnabled){
+                          if (isVibrate && IsEnabled) {
                             HapticFeedback.mediumImpact();
                           }
                         },
@@ -2006,7 +3577,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           if (IsEnabled) {
                             addLetter('Ş');
                           }
-                          if(isVibrate && IsEnabled){
+                          if (isVibrate && IsEnabled) {
                             HapticFeedback.mediumImpact();
                           }
                         },
@@ -2029,7 +3600,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           if (IsEnabled) {
                             addLetter('İ');
                           }
-                          if(isVibrate && IsEnabled){
+                          if (isVibrate && IsEnabled) {
                             HapticFeedback.mediumImpact();
                           }
                         },
@@ -2073,7 +3644,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           )),
                         ),
                         onTap: () {
-                          if(isVibrate && IsEnabled){
+                          if (isVibrate && IsEnabled) {
                             HapticFeedback.mediumImpact();
                           }
                           if (isFirst == false && !first.contains(' ')) {
@@ -2098,7 +3669,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           if (IsEnabled) {
                             addLetter('Z');
                           }
-                          if(isVibrate && IsEnabled){
+                          if (isVibrate && IsEnabled) {
                             HapticFeedback.mediumImpact();
                           }
                         },
@@ -2121,7 +3692,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           if (IsEnabled) {
                             addLetter('C');
                           }
-                          if(isVibrate && IsEnabled){
+                          if (isVibrate && IsEnabled) {
                             HapticFeedback.mediumImpact();
                           }
                         },
@@ -2144,7 +3715,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           if (IsEnabled) {
                             addLetter('V');
                           }
-                          if(isVibrate && IsEnabled){
+                          if (isVibrate && IsEnabled) {
                             HapticFeedback.mediumImpact();
                           }
                         },
@@ -2167,7 +3738,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           if (IsEnabled) {
                             addLetter('B');
                           }
-                          if(isVibrate && IsEnabled){
+                          if (isVibrate && IsEnabled) {
                             HapticFeedback.mediumImpact();
                           }
                         },
@@ -2190,7 +3761,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           if (IsEnabled) {
                             addLetter('N');
                           }
-                          if(isVibrate && IsEnabled){
+                          if (isVibrate && IsEnabled) {
                             HapticFeedback.mediumImpact();
                           }
                         },
@@ -2213,7 +3784,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           if (IsEnabled) {
                             addLetter('M');
                           }
-                          if(isVibrate && IsEnabled){
+                          if (isVibrate && IsEnabled) {
                             HapticFeedback.mediumImpact();
                           }
                         },
@@ -2236,7 +3807,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           if (IsEnabled) {
                             addLetter('Ö');
                           }
-                          if(isVibrate && IsEnabled){
+                          if (isVibrate && IsEnabled) {
                             HapticFeedback.mediumImpact();
                           }
                         },
@@ -2259,7 +3830,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           if (IsEnabled) {
                             addLetter('Ç');
                           }
-                          if(isVibrate && IsEnabled){
+                          if (isVibrate && IsEnabled) {
                             HapticFeedback.mediumImpact();
                           }
                         },
@@ -2279,7 +3850,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          if(isVibrate && IsEnabled){
+                          if (isVibrate && IsEnabled) {
                             HapticFeedback.mediumImpact();
                           }
                           removeLetter();
@@ -2308,6 +3879,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ));
   }
 }
+
 class UpperCaseTextFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(

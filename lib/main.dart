@@ -2675,74 +2675,75 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Column(children: [
             Container(
                 child: Expanded(
-                    child: Column(
+                    child: ListView(
+                      children: [Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Container(
-                      width: displayWidth / 6.4,
-                      height: displayWidth / 6.4,
-                      decoration: firsts[0],
-                      child: Text(first[0],
-                          style: TextStyle(
-                              color: Color.fromRGBO(215, 218, 220, 1),
-                              fontSize: 35)),
-                      alignment: Alignment(0.0, 0.0),
-                    ),
-                    SizedBox(
-                      width: displayWidth / 48,
-                    ),
-                    Container(
-                      width: displayWidth / 6.4,
-                      height: displayWidth / 6.4,
-                      decoration: firsts[1],
-                      child: Text(first[1],
-                          style: TextStyle(
-                              color: Color.fromRGBO(215, 218, 220, 1),
-                              fontSize: 35)),
-                      alignment: Alignment(0.0, 0.0),
-                    ),
-                    SizedBox(
-                      width: displayWidth / 48,
-                    ),
-                    Container(
-                      width: displayWidth / 6.4,
-                      height: displayWidth / 6.4,
-                      decoration: firsts[2],
-                      child: Text(first[2],
-                          style: TextStyle(
-                              color: Color.fromRGBO(215, 218, 220, 1),
-                              fontSize: 35)),
-                      alignment: Alignment(0.0, 0.0),
-                    ),
-                    SizedBox(
-                      width: displayWidth / 48,
-                    ),
-                    Container(
-                      width: displayWidth / 6.4,
-                      height: displayWidth / 6.4,
-                      decoration: firsts[3],
-                      child: Text(first[3],
-                          style: TextStyle(
-                              color: Color.fromRGBO(215, 218, 220, 1),
-                              fontSize: 35)),
-                      alignment: Alignment(0.0, 0.0),
-                    ),
-                    SizedBox(
-                      width: displayWidth / 48,
-                    ),
-                    Container(
-                      width: displayWidth / 6.4,
-                      height: displayWidth / 6.4,
-                      decoration: firsts[4],
-                      child: Text(first[4],
-                          style: TextStyle(
-                              color: Color.fromRGBO(215, 218, 220, 1),
-                              fontSize: 35)),
-                      alignment: Alignment(0.0, 0.0),
-                    ),
+                      Container(
+                        width: displayWidth / 6.4,
+                        height: displayWidth / 6.4,
+                        decoration: firsts[0],
+                        child: Text(first[0],
+                            style: TextStyle(
+                                color: Color.fromRGBO(215, 218, 220, 1),
+                                fontSize: 35)),
+                        alignment: Alignment(0.0, 0.0),
+                      ),
+                      SizedBox(
+                        width: displayWidth / 48,
+                      ),
+                      Container(
+                        width: displayWidth / 6.4,
+                        height: displayWidth / 6.4,
+                        decoration: firsts[1],
+                        child: Text(first[1],
+                            style: TextStyle(
+                                color: Color.fromRGBO(215, 218, 220, 1),
+                                fontSize: 35)),
+                        alignment: Alignment(0.0, 0.0),
+                      ),
+                      SizedBox(
+                        width: displayWidth / 48,
+                      ),
+                      Container(
+                        width: displayWidth / 6.4,
+                        height: displayWidth / 6.4,
+                        decoration: firsts[2],
+                        child: Text(first[2],
+                            style: TextStyle(
+                                color: Color.fromRGBO(215, 218, 220, 1),
+                                fontSize: 35)),
+                        alignment: Alignment(0.0, 0.0),
+                      ),
+                      SizedBox(
+                        width: displayWidth / 48,
+                      ),
+                      Container(
+                        width: displayWidth / 6.4,
+                        height: displayWidth / 6.4,
+                        decoration: firsts[3],
+                        child: Text(first[3],
+                            style: TextStyle(
+                                color: Color.fromRGBO(215, 218, 220, 1),
+                                fontSize: 35)),
+                        alignment: Alignment(0.0, 0.0),
+                      ),
+                      SizedBox(
+                        width: displayWidth / 48,
+                      ),
+                      Container(
+                        width: displayWidth / 6.4,
+                        height: displayWidth / 6.4,
+                        decoration: firsts[4],
+                        child: Text(first[4],
+                            style: TextStyle(
+                                color: Color.fromRGBO(215, 218, 220, 1),
+                                fontSize: 35)),
+                        alignment: Alignment(0.0, 0.0),
+                      ),
                   ],
                 ),
                 SizedBox(
@@ -2751,68 +2752,68 @@ class _MyHomePageState extends State<MyHomePage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Container(
-                      width: displayWidth / 6.4,
-                      height: displayWidth / 6.4,
-                      decoration: seconds[0],
-                      child: Text(second[0],
-                          style: TextStyle(
-                              color: Color.fromRGBO(215, 218, 220, 1),
-                              fontSize: 35)),
-                      alignment: Alignment(0.0, 0.0),
-                    ),
-                    SizedBox(
-                      width: displayWidth / 48,
-                    ),
-                    Container(
-                      width: displayWidth / 6.4,
-                      height: displayWidth / 6.4,
-                      decoration: seconds[1],
-                      child: Text(second[1],
-                          style: TextStyle(
-                              color: Color.fromRGBO(215, 218, 220, 1),
-                              fontSize: 35)),
-                      alignment: Alignment(0.0, 0.0),
-                    ),
-                    SizedBox(
-                      width: displayWidth / 48,
-                    ),
-                    Container(
-                      width: displayWidth / 6.4,
-                      height: displayWidth / 6.4,
-                      decoration: seconds[2],
-                      child: Text(second[2],
-                          style: TextStyle(
-                              color: Color.fromRGBO(215, 218, 220, 1),
-                              fontSize: 35)),
-                      alignment: Alignment(0.0, 0.0),
-                    ),
-                    SizedBox(
-                      width: displayWidth / 48,
-                    ),
-                    Container(
-                      width: displayWidth / 6.4,
-                      height: displayWidth / 6.4,
-                      decoration: seconds[3],
-                      child: Text(second[3],
-                          style: TextStyle(
-                              color: Color.fromRGBO(215, 218, 220, 1),
-                              fontSize: 35)),
-                      alignment: Alignment(0.0, 0.0),
-                    ),
-                    SizedBox(
-                      width: displayWidth / 48,
-                    ),
-                    Container(
-                      width: displayWidth / 6.4,
-                      height: displayWidth / 6.4,
-                      decoration: seconds[4],
-                      child: Text(second[4],
-                          style: TextStyle(
-                              color: Color.fromRGBO(215, 218, 220, 1),
-                              fontSize: 35)),
-                      alignment: Alignment(0.0, 0.0),
-                    ),
+                      Container(
+                        width: displayWidth / 6.4,
+                        height: displayWidth / 6.4,
+                        decoration: seconds[0],
+                        child: Text(second[0],
+                            style: TextStyle(
+                                color: Color.fromRGBO(215, 218, 220, 1),
+                                fontSize: 35)),
+                        alignment: Alignment(0.0, 0.0),
+                      ),
+                      SizedBox(
+                        width: displayWidth / 48,
+                      ),
+                      Container(
+                        width: displayWidth / 6.4,
+                        height: displayWidth / 6.4,
+                        decoration: seconds[1],
+                        child: Text(second[1],
+                            style: TextStyle(
+                                color: Color.fromRGBO(215, 218, 220, 1),
+                                fontSize: 35)),
+                        alignment: Alignment(0.0, 0.0),
+                      ),
+                      SizedBox(
+                        width: displayWidth / 48,
+                      ),
+                      Container(
+                        width: displayWidth / 6.4,
+                        height: displayWidth / 6.4,
+                        decoration: seconds[2],
+                        child: Text(second[2],
+                            style: TextStyle(
+                                color: Color.fromRGBO(215, 218, 220, 1),
+                                fontSize: 35)),
+                        alignment: Alignment(0.0, 0.0),
+                      ),
+                      SizedBox(
+                        width: displayWidth / 48,
+                      ),
+                      Container(
+                        width: displayWidth / 6.4,
+                        height: displayWidth / 6.4,
+                        decoration: seconds[3],
+                        child: Text(second[3],
+                            style: TextStyle(
+                                color: Color.fromRGBO(215, 218, 220, 1),
+                                fontSize: 35)),
+                        alignment: Alignment(0.0, 0.0),
+                      ),
+                      SizedBox(
+                        width: displayWidth / 48,
+                      ),
+                      Container(
+                        width: displayWidth / 6.4,
+                        height: displayWidth / 6.4,
+                        decoration: seconds[4],
+                        child: Text(second[4],
+                            style: TextStyle(
+                                color: Color.fromRGBO(215, 218, 220, 1),
+                                fontSize: 35)),
+                        alignment: Alignment(0.0, 0.0),
+                      ),
                   ],
                 ),
                 SizedBox(
@@ -2821,68 +2822,68 @@ class _MyHomePageState extends State<MyHomePage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Container(
-                      width: displayWidth / 6.4,
-                      height: displayWidth / 6.4,
-                      decoration: thirds[0],
-                      child: Text(third[0],
-                          style: TextStyle(
-                              color: Color.fromRGBO(215, 218, 220, 1),
-                              fontSize: 35)),
-                      alignment: Alignment(0.0, 0.0),
-                    ),
-                    SizedBox(
-                      width: displayWidth / 48,
-                    ),
-                    Container(
-                      width: displayWidth / 6.4,
-                      height: displayWidth / 6.4,
-                      decoration: thirds[1],
-                      child: Text(third[1],
-                          style: TextStyle(
-                              color: Color.fromRGBO(215, 218, 220, 1),
-                              fontSize: 35)),
-                      alignment: Alignment(0.0, 0.0),
-                    ),
-                    SizedBox(
-                      width: displayWidth / 48,
-                    ),
-                    Container(
-                      width: displayWidth / 6.4,
-                      height: displayWidth / 6.4,
-                      decoration: thirds[2],
-                      child: Text(third[2],
-                          style: TextStyle(
-                              color: Color.fromRGBO(215, 218, 220, 1),
-                              fontSize: 35)),
-                      alignment: Alignment(0.0, 0.0),
-                    ),
-                    SizedBox(
-                      width: displayWidth / 48,
-                    ),
-                    Container(
-                      width: displayWidth / 6.4,
-                      height: displayWidth / 6.4,
-                      decoration: thirds[3],
-                      child: Text(third[3],
-                          style: TextStyle(
-                              color: Color.fromRGBO(215, 218, 220, 1),
-                              fontSize: 35)),
-                      alignment: Alignment(0.0, 0.0),
-                    ),
-                    SizedBox(
-                      width: displayWidth / 48,
-                    ),
-                    Container(
-                      width: displayWidth / 6.4,
-                      height: displayWidth / 6.4,
-                      decoration: thirds[4],
-                      child: Text(third[4],
-                          style: TextStyle(
-                              color: Color.fromRGBO(215, 218, 220, 1),
-                              fontSize: 35)),
-                      alignment: Alignment(0.0, 0.0),
-                    ),
+                      Container(
+                        width: displayWidth / 6.4,
+                        height: displayWidth / 6.4,
+                        decoration: thirds[0],
+                        child: Text(third[0],
+                            style: TextStyle(
+                                color: Color.fromRGBO(215, 218, 220, 1),
+                                fontSize: 35)),
+                        alignment: Alignment(0.0, 0.0),
+                      ),
+                      SizedBox(
+                        width: displayWidth / 48,
+                      ),
+                      Container(
+                        width: displayWidth / 6.4,
+                        height: displayWidth / 6.4,
+                        decoration: thirds[1],
+                        child: Text(third[1],
+                            style: TextStyle(
+                                color: Color.fromRGBO(215, 218, 220, 1),
+                                fontSize: 35)),
+                        alignment: Alignment(0.0, 0.0),
+                      ),
+                      SizedBox(
+                        width: displayWidth / 48,
+                      ),
+                      Container(
+                        width: displayWidth / 6.4,
+                        height: displayWidth / 6.4,
+                        decoration: thirds[2],
+                        child: Text(third[2],
+                            style: TextStyle(
+                                color: Color.fromRGBO(215, 218, 220, 1),
+                                fontSize: 35)),
+                        alignment: Alignment(0.0, 0.0),
+                      ),
+                      SizedBox(
+                        width: displayWidth / 48,
+                      ),
+                      Container(
+                        width: displayWidth / 6.4,
+                        height: displayWidth / 6.4,
+                        decoration: thirds[3],
+                        child: Text(third[3],
+                            style: TextStyle(
+                                color: Color.fromRGBO(215, 218, 220, 1),
+                                fontSize: 35)),
+                        alignment: Alignment(0.0, 0.0),
+                      ),
+                      SizedBox(
+                        width: displayWidth / 48,
+                      ),
+                      Container(
+                        width: displayWidth / 6.4,
+                        height: displayWidth / 6.4,
+                        decoration: thirds[4],
+                        child: Text(third[4],
+                            style: TextStyle(
+                                color: Color.fromRGBO(215, 218, 220, 1),
+                                fontSize: 35)),
+                        alignment: Alignment(0.0, 0.0),
+                      ),
                   ],
                 ),
                 SizedBox(
@@ -2891,68 +2892,68 @@ class _MyHomePageState extends State<MyHomePage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Container(
-                      width: displayWidth / 6.4,
-                      height: displayWidth / 6.4,
-                      decoration: fourths[0],
-                      child: Text(fourth[0],
-                          style: TextStyle(
-                              color: Color.fromRGBO(215, 218, 220, 1),
-                              fontSize: 35)),
-                      alignment: Alignment(0.0, 0.0),
-                    ),
-                    SizedBox(
-                      width: displayWidth / 48,
-                    ),
-                    Container(
-                      width: displayWidth / 6.4,
-                      height: displayWidth / 6.4,
-                      decoration: fourths[1],
-                      child: Text(fourth[1],
-                          style: TextStyle(
-                              color: Color.fromRGBO(215, 218, 220, 1),
-                              fontSize: 35)),
-                      alignment: Alignment(0.0, 0.0),
-                    ),
-                    SizedBox(
-                      width: displayWidth / 48,
-                    ),
-                    Container(
-                      width: displayWidth / 6.4,
-                      height: displayWidth / 6.4,
-                      decoration: fourths[2],
-                      child: Text(fourth[2],
-                          style: TextStyle(
-                              color: Color.fromRGBO(215, 218, 220, 1),
-                              fontSize: 35)),
-                      alignment: Alignment(0.0, 0.0),
-                    ),
-                    SizedBox(
-                      width: displayWidth / 48,
-                    ),
-                    Container(
-                      width: displayWidth / 6.4,
-                      height: displayWidth / 6.4,
-                      decoration: fourths[3],
-                      child: Text(fourth[3],
-                          style: TextStyle(
-                              color: Color.fromRGBO(215, 218, 220, 1),
-                              fontSize: 35)),
-                      alignment: Alignment(0.0, 0.0),
-                    ),
-                    SizedBox(
-                      width: displayWidth / 48,
-                    ),
-                    Container(
-                      width: displayWidth / 6.4,
-                      height: displayWidth / 6.4,
-                      decoration: fourths[4],
-                      child: Text(fourth[4],
-                          style: TextStyle(
-                              color: Color.fromRGBO(215, 218, 220, 1),
-                              fontSize: 35)),
-                      alignment: Alignment(0.0, 0.0),
-                    ),
+                      Container(
+                        width: displayWidth / 6.4,
+                        height: displayWidth / 6.4,
+                        decoration: fourths[0],
+                        child: Text(fourth[0],
+                            style: TextStyle(
+                                color: Color.fromRGBO(215, 218, 220, 1),
+                                fontSize: 35)),
+                        alignment: Alignment(0.0, 0.0),
+                      ),
+                      SizedBox(
+                        width: displayWidth / 48,
+                      ),
+                      Container(
+                        width: displayWidth / 6.4,
+                        height: displayWidth / 6.4,
+                        decoration: fourths[1],
+                        child: Text(fourth[1],
+                            style: TextStyle(
+                                color: Color.fromRGBO(215, 218, 220, 1),
+                                fontSize: 35)),
+                        alignment: Alignment(0.0, 0.0),
+                      ),
+                      SizedBox(
+                        width: displayWidth / 48,
+                      ),
+                      Container(
+                        width: displayWidth / 6.4,
+                        height: displayWidth / 6.4,
+                        decoration: fourths[2],
+                        child: Text(fourth[2],
+                            style: TextStyle(
+                                color: Color.fromRGBO(215, 218, 220, 1),
+                                fontSize: 35)),
+                        alignment: Alignment(0.0, 0.0),
+                      ),
+                      SizedBox(
+                        width: displayWidth / 48,
+                      ),
+                      Container(
+                        width: displayWidth / 6.4,
+                        height: displayWidth / 6.4,
+                        decoration: fourths[3],
+                        child: Text(fourth[3],
+                            style: TextStyle(
+                                color: Color.fromRGBO(215, 218, 220, 1),
+                                fontSize: 35)),
+                        alignment: Alignment(0.0, 0.0),
+                      ),
+                      SizedBox(
+                        width: displayWidth / 48,
+                      ),
+                      Container(
+                        width: displayWidth / 6.4,
+                        height: displayWidth / 6.4,
+                        decoration: fourths[4],
+                        child: Text(fourth[4],
+                            style: TextStyle(
+                                color: Color.fromRGBO(215, 218, 220, 1),
+                                fontSize: 35)),
+                        alignment: Alignment(0.0, 0.0),
+                      ),
                   ],
                 ),
                 SizedBox(
@@ -2961,68 +2962,68 @@ class _MyHomePageState extends State<MyHomePage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Container(
-                      width: displayWidth / 6.4,
-                      height: displayWidth / 6.4,
-                      decoration: fifths[0],
-                      child: Text(fifth[0],
-                          style: TextStyle(
-                              color: Color.fromRGBO(215, 218, 220, 1),
-                              fontSize: 35)),
-                      alignment: Alignment(0.0, 0.0),
-                    ),
-                    SizedBox(
-                      width: displayWidth / 48,
-                    ),
-                    Container(
-                      width: displayWidth / 6.4,
-                      height: displayWidth / 6.4,
-                      decoration: fifths[1],
-                      child: Text(fifth[1],
-                          style: TextStyle(
-                              color: Color.fromRGBO(215, 218, 220, 1),
-                              fontSize: 35)),
-                      alignment: Alignment(0.0, 0.0),
-                    ),
-                    SizedBox(
-                      width: displayWidth / 48,
-                    ),
-                    Container(
-                      width: displayWidth / 6.4,
-                      height: displayWidth / 6.4,
-                      decoration: fifths[2],
-                      child: Text(fifth[2],
-                          style: TextStyle(
-                              color: Color.fromRGBO(215, 218, 220, 1),
-                              fontSize: 35)),
-                      alignment: Alignment(0.0, 0.0),
-                    ),
-                    SizedBox(
-                      width: displayWidth / 48,
-                    ),
-                    Container(
-                      width: displayWidth / 6.4,
-                      height: displayWidth / 6.4,
-                      decoration: fifths[3],
-                      child: Text(fifth[3],
-                          style: TextStyle(
-                              color: Color.fromRGBO(215, 218, 220, 1),
-                              fontSize: 35)),
-                      alignment: Alignment(0.0, 0.0),
-                    ),
-                    SizedBox(
-                      width: displayWidth / 48,
-                    ),
-                    Container(
-                      width: displayWidth / 6.4,
-                      height: displayWidth / 6.4,
-                      decoration: fifths[4],
-                      child: Text(fifth[4],
-                          style: TextStyle(
-                              color: Color.fromRGBO(215, 218, 220, 1),
-                              fontSize: 35)),
-                      alignment: Alignment(0.0, 0.0),
-                    ),
+                      Container(
+                        width: displayWidth / 6.4,
+                        height: displayWidth / 6.4,
+                        decoration: fifths[0],
+                        child: Text(fifth[0],
+                            style: TextStyle(
+                                color: Color.fromRGBO(215, 218, 220, 1),
+                                fontSize: 35)),
+                        alignment: Alignment(0.0, 0.0),
+                      ),
+                      SizedBox(
+                        width: displayWidth / 48,
+                      ),
+                      Container(
+                        width: displayWidth / 6.4,
+                        height: displayWidth / 6.4,
+                        decoration: fifths[1],
+                        child: Text(fifth[1],
+                            style: TextStyle(
+                                color: Color.fromRGBO(215, 218, 220, 1),
+                                fontSize: 35)),
+                        alignment: Alignment(0.0, 0.0),
+                      ),
+                      SizedBox(
+                        width: displayWidth / 48,
+                      ),
+                      Container(
+                        width: displayWidth / 6.4,
+                        height: displayWidth / 6.4,
+                        decoration: fifths[2],
+                        child: Text(fifth[2],
+                            style: TextStyle(
+                                color: Color.fromRGBO(215, 218, 220, 1),
+                                fontSize: 35)),
+                        alignment: Alignment(0.0, 0.0),
+                      ),
+                      SizedBox(
+                        width: displayWidth / 48,
+                      ),
+                      Container(
+                        width: displayWidth / 6.4,
+                        height: displayWidth / 6.4,
+                        decoration: fifths[3],
+                        child: Text(fifth[3],
+                            style: TextStyle(
+                                color: Color.fromRGBO(215, 218, 220, 1),
+                                fontSize: 35)),
+                        alignment: Alignment(0.0, 0.0),
+                      ),
+                      SizedBox(
+                        width: displayWidth / 48,
+                      ),
+                      Container(
+                        width: displayWidth / 6.4,
+                        height: displayWidth / 6.4,
+                        decoration: fifths[4],
+                        child: Text(fifth[4],
+                            style: TextStyle(
+                                color: Color.fromRGBO(215, 218, 220, 1),
+                                fontSize: 35)),
+                        alignment: Alignment(0.0, 0.0),
+                      ),
                   ],
                 ),
                 SizedBox(
@@ -3031,75 +3032,76 @@ class _MyHomePageState extends State<MyHomePage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Container(
-                      width: displayWidth / 6.4,
-                      height: displayWidth / 6.4,
-                      decoration: sixths[0],
-                      child: Text(sixth[0],
-                          style: TextStyle(
-                              color: Color.fromRGBO(215, 218, 220, 1),
-                              fontSize: 35)),
-                      alignment: Alignment(0.0, 0.0),
-                    ),
-                    SizedBox(
-                      width: displayWidth / 48,
-                    ),
-                    Container(
-                      width: displayWidth / 6.4,
-                      height: displayWidth / 6.4,
-                      decoration: sixths[1],
-                      child: Text(sixth[1],
-                          style: TextStyle(
-                              color: Color.fromRGBO(215, 218, 220, 1),
-                              fontSize: 35)),
-                      alignment: Alignment(0.0, 0.0),
-                    ),
-                    SizedBox(
-                      width: displayWidth / 48,
-                    ),
-                    Container(
-                      width: displayWidth / 6.4,
-                      height: displayWidth / 6.4,
-                      decoration: sixths[2],
-                      child: Text(sixth[2],
-                          style: TextStyle(
-                              color: Color.fromRGBO(215, 218, 220, 1),
-                              fontSize: 35)),
-                      alignment: Alignment(0.0, 0.0),
-                    ),
-                    SizedBox(
-                      width: displayWidth / 48,
-                    ),
-                    Container(
-                      width: displayWidth / 6.4,
-                      height: displayWidth / 6.4,
-                      decoration: sixths[3],
-                      child: Text(sixth[3],
-                          style: TextStyle(
-                              color: Color.fromRGBO(215, 218, 220, 1),
-                              fontSize: 35)),
-                      alignment: Alignment(0.0, 0.0),
-                    ),
-                    SizedBox(
-                      width: displayWidth / 48,
-                    ),
-                    Container(
-                      width: displayWidth / 6.4,
-                      height: displayWidth / 6.4,
-                      decoration: sixths[4],
-                      child: Text(sixth[4],
-                          style: TextStyle(
-                              color: Color.fromRGBO(215, 218, 220, 1),
-                              fontSize: 35)),
-                      alignment: Alignment(0.0, 0.0),
-                    ),
+                      Container(
+                        width: displayWidth / 6.4,
+                        height: displayWidth / 6.4,
+                        decoration: sixths[0],
+                        child: Text(sixth[0],
+                            style: TextStyle(
+                                color: Color.fromRGBO(215, 218, 220, 1),
+                                fontSize: 35)),
+                        alignment: Alignment(0.0, 0.0),
+                      ),
+                      SizedBox(
+                        width: displayWidth / 48,
+                      ),
+                      Container(
+                        width: displayWidth / 6.4,
+                        height: displayWidth / 6.4,
+                        decoration: sixths[1],
+                        child: Text(sixth[1],
+                            style: TextStyle(
+                                color: Color.fromRGBO(215, 218, 220, 1),
+                                fontSize: 35)),
+                        alignment: Alignment(0.0, 0.0),
+                      ),
+                      SizedBox(
+                        width: displayWidth / 48,
+                      ),
+                      Container(
+                        width: displayWidth / 6.4,
+                        height: displayWidth / 6.4,
+                        decoration: sixths[2],
+                        child: Text(sixth[2],
+                            style: TextStyle(
+                                color: Color.fromRGBO(215, 218, 220, 1),
+                                fontSize: 35)),
+                        alignment: Alignment(0.0, 0.0),
+                      ),
+                      SizedBox(
+                        width: displayWidth / 48,
+                      ),
+                      Container(
+                        width: displayWidth / 6.4,
+                        height: displayWidth / 6.4,
+                        decoration: sixths[3],
+                        child: Text(sixth[3],
+                            style: TextStyle(
+                                color: Color.fromRGBO(215, 218, 220, 1),
+                                fontSize: 35)),
+                        alignment: Alignment(0.0, 0.0),
+                      ),
+                      SizedBox(
+                        width: displayWidth / 48,
+                      ),
+                      Container(
+                        width: displayWidth / 6.4,
+                        height: displayWidth / 6.4,
+                        decoration: sixths[4],
+                        child: Text(sixth[4],
+                            style: TextStyle(
+                                color: Color.fromRGBO(215, 218, 220, 1),
+                                fontSize: 35)),
+                        alignment: Alignment(0.0, 0.0),
+                      ),
                   ],
                 ),
                 SizedBox(
                   height: 10,
                 ),
               ],
-            ))),
+            )]
+                    ))),
             Container(
               decoration: BoxDecoration(color: Color.fromRGBO(18, 18, 19, 1)),
               child: Column(
